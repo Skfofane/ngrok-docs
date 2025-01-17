@@ -20,7 +20,7 @@ To download and install the ngrok agent on your remote Windows device, follow th
 
 1. Open a terminal into your remote Windows device.
 
-1. Download the latest ngrok binary for your Windows distribution. You can find the correct binary on our [ngrok download page](https://ngrok.com/download): Select your operating system, select the version, and copy the link that appears in the **Download** button. Below is an example using PowerShell:
+1. Download the latest ngrok binary for your Windows distribution. You can find the correct binary on our [ngrok download page](https://download.ngrok.com): Select your operating system, select the version, and copy the link that appears in the **Download** button. Below is an example using PowerShell:
 
 ```bash
 Invoke-WebRequest -Uri https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip -OutFile ngrok-v3-stable-windows-amd64.zip
@@ -45,7 +45,10 @@ ngrok authtoken NGROK_AUTHTOKEN
 To enable Remote Desktop Protocol (RDP) access to your device via ngrok:
 
 1. Test that the ngrok agent is configured correctly by starting a TCP tunnel on your remote device to enable you to connect through RDP.
-   **Note**: If you get an error, ensure your authtoken is configured correctly.
+
+::::warning
+TCP endpoints are only available on a free plan after [adding a valid payment method](https://dashboard.ngrok.com/settings#id-verification) to your account. If you get a different error, ensure your authtoken is configured correctly.
+::::
 
 ```bash
 ngrok tcp 3389
@@ -86,7 +89,7 @@ Alternatively, you can create an IP policy in the ngrok dashboard (under [Securi
 
 The ngrok agent works with native OS services like `systemd`. This helps you ensure that the ngrok service is available even after the machine restarts. Before we do this though, it's useful to reserve a TCP address in the ngrok dashboard which allows you to reuse the same address each time the device is restarted.
 
-1. Navigate to the ngrok Dashboard and access [Cloud Edge > TCP Addresses](https://dashboard.ngrok.com/cloud-edge/tcp-addresses). Create a new TCP address with a description and click **Save**. Your new TCP address will look something like `1.tcp.ngrok.io:12345`.
+1. Navigate to the ngrok Dashboard and access [Universal Gateway > TCP Addresses](https://dashboard.ngrok.com/cloud-edge/tcp-addresses). Create a new TCP address with a description and click **Save**. Your new TCP address will look something like `1.tcp.ngrok.io:12345`.
 
 Update the ngrok config file in your Windows device to start the ngrok agent using this TCP address.
 
@@ -116,7 +119,7 @@ tunnels:
 1. Enable ngrok in service mode:
 
 ```bash
-ngrok service install --config %HOMEPATH%\AppData\Local\ngrok\ngrok.yml"
+ngrok service install --config "%HOMEPATH%\AppData\Local\ngrok\ngrok.yml"
 ```
 
 :::note
@@ -149,7 +152,7 @@ Each action that happens in ngrok is published as an event, and [Event Subscript
 
 An Event Subscription is made up of a set of event sources (some of which can be filtered), and event destinations. Each subscription can send the events to one or more destinations, such as Amazon CloudWatch Logs, Amazon Kinesis (as a data stream), or Amazon Kinesis Firehose (as a delivery stream).
 
-Event subscriptions can be configured through the [ngrok Dashboard](https://dashboard.ngrok.com/obs/subscriptions) or the [ngrok API](/docs/api/resources/event-destinations/).
+Event subscriptions can be configured through the [ngrok Dashboard](https://dashboard.ngrok.com/observability/event-subscriptions) or the [ngrok API](/docs/api/resources/event-destinations/).
 
 You can also forward all or some of your traffic events from [ngrok to your preferred logging tool](/docs/obs/).
 

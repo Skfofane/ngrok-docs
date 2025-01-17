@@ -17,39 +17,40 @@ import Link from "@docusaurus/Link";
 </p>
 <p>
 	You can use ngrok in development for webhook testing or in production as an
-	API Gateway, Kubernetes Ingress Controller, or Identity-Aware Proxy. You can
-	also run ngrok to easily create secure connectivity to APIs in your customers'
-	networks or on your devices in the field.{" "}
+	API Gateway, Kubernetes Ingress, or Identity-Aware Proxy. You can also run
+	ngrok to easily create secure connectivity to APIs in your customers' networks
+	or on your devices in the field.{" "}
 	<a href="/what-is-ngrok">More about what you can do with ngrok →</a>
 </p>
 
 ## Get Started
 
-<div className="ngrok--cards ngrok--cards-row">
-	<Link to={`/getting-started`}>
-		<div className="ngrok--card ngrok--card-lg">
-			<div className="ngrok--card-heading">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					height="32"
-					viewBox="0 96 960 960"
-					width="32"
-				>
-					<path d="M560 482v-48q33-14 67.5-21t72.5-7q26 0 51 4t49 10v44q-24-9-48.5-13.5T700 446q-38 0-73 9.5T560 482Zm0 220v-49q33-13.5 67.5-20.25T700 626q26 0 51 4t49 10v44q-24-9-48.5-13.5T700 666q-38 0-73 9t-67 27Zm0-110v-48q33-14 67.5-21t72.5-7q26 0 51 4t49 10v44q-24-9-48.5-13.5T700 556q-38 0-73 9.5T560 592ZM248 756q53.566 0 104.283 12.5T452 806V379q-45-30-97.619-46.5Q301.763 316 248 316q-38 0-74.5 9.5T100 349v434q31-14 70.5-20.5T248 756Zm264 50q50-25 98-37.5T712 756q38 0 78.5 6t69.5 16V349q-34-17-71.822-25-37.823-8-76.178-8-54 0-104.5 16.5T512 379v427Zm-30 90q-51-38-111-58.5T248 817q-36.537 0-71.768 9Q141 835 106 848q-23.1 11-44.55-3Q40 831 40 805V342q0-15 7-27.5T68 295q42-20 87.395-29.5Q200.789 256 248 256q63 0 122.5 17T482 325q51-35 109.5-52T712 256q46.868 0 91.934 9.5Q849 275 891 295q14 7 21.5 19.5T920 342v463q0 27.894-22.5 42.447Q875 862 853 848q-34-14-69.232-22.5Q748.537 817 712 817q-63 0-121 21t-109 58ZM276 567Z" />
-				</svg>
-				<h2>Quickstart</h2>
-			</div>
-			<p>
-				Put your app on the internet with the ngrok agent in less than a minute.
-			</p>
-			<a>Get started with ngrok →</a>
+<Link
+	className="mb-4 block text-inherit no-underline hover:text-inherit hover:no-underline focus:text-inherit focus:no-underline"
+	to="/getting-started"
+>
+	<div className="ngrok--card ngrok--card-lg">
+		<div className="ngrok--card-heading">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				height="32"
+				viewBox="0 96 960 960"
+				width="32"
+			>
+				<path d="M560 482v-48q33-14 67.5-21t72.5-7q26 0 51 4t49 10v44q-24-9-48.5-13.5T700 446q-38 0-73 9.5T560 482Zm0 220v-49q33-13.5 67.5-20.25T700 626q26 0 51 4t49 10v44q-24-9-48.5-13.5T700 666q-38 0-73 9t-67 27Zm0-110v-48q33-14 67.5-21t72.5-7q26 0 51 4t49 10v44q-24-9-48.5-13.5T700 556q-38 0-73 9.5T560 592ZM248 756q53.566 0 104.283 12.5T452 806V379q-45-30-97.619-46.5Q301.763 316 248 316q-38 0-74.5 9.5T100 349v434q31-14 70.5-20.5T248 756Zm264 50q50-25 98-37.5T712 756q38 0 78.5 6t69.5 16V349q-34-17-71.822-25-37.823-8-76.178-8-54 0-104.5 16.5T512 379v427Zm-30 90q-51-38-111-58.5T248 817q-36.537 0-71.768 9Q141 835 106 848q-23.1 11-44.55-3Q40 831 40 805V342q0-15 7-27.5T68 295q42-20 87.395-29.5Q200.789 256 248 256q63 0 122.5 17T482 325q51-35 109.5-52T712 256q46.868 0 91.934 9.5Q849 275 891 295q14 7 21.5 19.5T920 342v463q0 27.894-22.5 42.447Q875 862 853 848q-34-14-69.232-22.5Q748.537 817 712 817q-63 0-121 21t-109 58ZM276 567Z" />
+			</svg>
+			<h2>Quickstart</h2>
 		</div>
-	</Link>
-</div>
+		<p>
+			Put your app on the internet with the ngrok agent in less than a minute.
+		</p>
+		<a>Get started with ngrok →</a>
+	</div>
+</Link>
 
 Or instead of the ngrok agent, get started another way:
 
-<div className="ngrok--cards ngrok--cards-row">
+<div className="ngrok--cards ngrok--cards-flex ngrok--cards-row">
 	<Link to={`/getting-started/go/`}>
 		<div className="ngrok--card ngrok--card-sm">
 			<div className="ngrok--card-heading jc-space-between">
@@ -82,7 +83,7 @@ Or instead of the ngrok agent, get started another way:
 	<Link to={`/using-ngrok-with/node-js`}>
 		<div className="ngrok--card ngrok--card-sm">
 			<div className="ngrok--card-heading jc-space-between">
-				<h4 className="fw-600">Javscript SDK</h4>
+				<h4 className="fw-600">JavaScript SDK</h4>
 				<svg viewBox="0 0 128 128">
 					<path d="M112.771 30.334L68.674 4.729c-2.781-1.584-6.402-1.584-9.205 0L14.901 30.334C12.031 31.985 10 35.088 10 38.407v51.142c0 3.319 2.084 6.423 4.954 8.083l11.775 6.688c5.628 2.772 7.617 2.772 10.178 2.772 8.333 0 13.093-5.039 13.093-13.828v-50.49c0-.713-.371-1.774-1.071-1.774h-5.623C42.594 41 41 42.061 41 42.773v50.49c0 3.896-3.524 7.773-10.11 4.48L18.723 90.73c-.424-.23-.723-.693-.723-1.181V38.407c0-.482.555-.966.982-1.213l44.424-25.561c.415-.235 1.025-.235 1.439 0l43.882 25.555c.42.253.272.722.272 1.219v51.142c0 .488.183.963-.232 1.198l-44.086 25.576c-.378.227-.847.227-1.261 0l-11.307-6.749c-.341-.198-.746-.269-1.073-.086-3.146 1.783-3.726 2.02-6.677 3.043-.726.253-1.797.692.41 1.929l14.798 8.754a9.294 9.294 0 004.647 1.246c1.642 0 3.25-.426 4.667-1.246l43.885-25.582c2.87-1.672 4.23-4.764 4.23-8.083V38.407c0-3.319-1.36-6.414-4.229-8.073zM77.91 81.445c-11.726 0-14.309-3.235-15.17-9.066-.1-.628-.633-1.379-1.272-1.379h-5.731c-.709 0-1.279.86-1.279 1.566 0 7.466 4.059 16.512 23.453 16.512 14.039 0 22.088-5.455 22.088-15.109 0-9.572-6.467-12.084-20.082-13.886-13.762-1.819-15.16-2.738-15.16-5.962 0-2.658 1.184-6.203 11.374-6.203 9.105 0 12.461 1.954 13.842 8.091.118.577.645.991 1.24.991h5.754c.354 0 .692-.143.94-.396.24-.272.367-.613.335-.979-.891-10.568-7.912-15.493-22.112-15.493-12.631 0-20.166 5.334-20.166 14.275 0 9.698 7.497 12.378 19.622 13.577 14.505 1.422 15.633 3.542 15.633 6.395 0 4.955-3.978 7.066-13.309 7.066z"></path>
 				</svg>
@@ -90,11 +91,11 @@ Or instead of the ngrok agent, get started another way:
 		</div>
 	</Link>
 </div>
-<div className="ngrok--cards ngrok--cards-row">
-	<Link to={`/using-ngrok-with/k8s`}>
+<div className="ngrok--cards ngrok--cards-flex ngrok--cards-row">
+	<Link to={`/k8s`}>
 		<div className="ngrok--card ngrok--card-sm">
 			<div className="ngrok--card-heading jc-space-between">
-				<h4 className="fw-600">Kubernetes Controller</h4>
+				<h4 className="fw-600">Kubernetes Operator</h4>
 				<svg viewBox="0 0 128 128">
 					<path d="M56.484 55.098c.37.27.82.43 1.31.43 1.2 0 2.18-.95 2.23-2.13l.05-.03.75-13.26c-.9.11-1.8.26-2.7.46-4.93 1.12-9.2 3.55-12.54 6.83l10.87 7.71.03-.01zM55.034 74.528a2.218 2.218 0 00-2.58-1.69l-.02-.03-13.05 2.21a26.15 26.15 0 0010.51 13.15l5.06-12.22-.04-.05c.17-.42.23-.89.12-1.37zM50.694 65.118c.44-.12.85-.38 1.16-.76.75-.94.62-2.29-.28-3.07l.01-.05-9.93-8.88a26.07 26.07 0 00-3.7 16.48l12.73-3.67.01-.05zM60.334 69.018l3.66 1.76 3.66-1.75.9-3.95-2.53-3.16h-4.06l-2.54 3.16zM67.934 53.348c.02.46.18.91.49 1.29.75.94 2.1 1.11 3.06.41l.04.02 10.8-7.66c-4.08-3.99-9.4-6.6-15.15-7.3l.75 13.24h.01zM75.514 72.778c-.17-.03-.34-.05-.51-.04-.29.01-.58.09-.85.22a2.23 2.23 0 00-1.08 2.89l-.02.02 5.11 12.34c4.93-3.14 8.61-7.83 10.54-13.24l-13.16-2.23-.03.04zM65.954 79.318a2.246 2.246 0 00-2.04-1.17c-.77.03-1.5.46-1.89 1.18h-.01l-6.42 11.6a26.16 26.16 0 0014.27.73c.88-.2 1.74-.44 2.57-.72l-6.43-11.63h-.05z"></path>
 					<path d="M124.544 76.788l-10.44-45.33a8.012 8.012 0 00-4.37-5.43l-42.24-20.18a8.157 8.157 0 00-3.92-.78 8.15 8.15 0 00-3.1.78l-42.24 20.18a8.055 8.055 0 00-4.37 5.43l-10.41 45.34a7.92 7.92 0 001.1 6.14c.14.22.3.43.46.64l29.24 36.35a8.087 8.087 0 006.32 3.01l46.89-.01c2.46 0 4.78-1.11 6.32-3.01l29.23-36.36a7.981 7.981 0 001.53-6.77zm-16.07-.55c-.31 1.35-1.76 2.17-3.26 1.85-.01 0-.03 0-.04-.01-.02 0-.03-.01-.05-.02-.21-.05-.47-.09-.65-.14-.86-.23-1.49-.58-2.27-.88-1.67-.6-3.06-1.1-4.41-1.3-.69-.05-1.04.27-1.42.52-.18-.04-.75-.14-1.08-.19-2.42 7.61-7.58 14.21-14.57 18.33.12.29.33.91.42 1.02-.16.43-.4.83-.19 1.49.49 1.27 1.28 2.52 2.24 4.01.46.69.94 1.22 1.36 2.02.1.19.23.48.33.68.65 1.39.17 2.99-1.08 3.59-1.26.61-2.82-.03-3.5-1.43-.1-.2-.23-.46-.31-.65-.36-.82-.48-1.52-.73-2.32-.57-1.68-1.05-3.07-1.73-4.25-.39-.57-.86-.64-1.29-.78-.08-.14-.38-.69-.54-.97-1.4.53-2.84.97-4.34 1.31-6.56 1.49-13.13.89-18.99-1.37l-.57 1.04c-.43.11-.84.23-1.09.53-.92 1.1-1.29 2.86-1.96 4.54-.25.79-.37 1.5-.73 2.32-.08.19-.22.45-.31.64v.01l-.01.01c-.67 1.39-2.23 2.03-3.49 1.43-1.25-.6-1.72-2.2-1.08-3.59.1-.2.22-.49.32-.68.42-.79.89-1.33 1.36-2.02.96-1.5 1.8-2.84 2.29-4.11.12-.42-.06-1-.22-1.43l.46-1.1c-6.73-3.99-12.04-10.34-14.58-18.21l-1.1.19c-.3-.17-.89-.56-1.45-.51-1.35.2-2.74.7-4.41 1.3-.78.3-1.4.64-2.27.87-.18.05-.44.1-.65.15-.02 0-.03.01-.05.02-.01 0-.03 0-.04.01-1.5.32-2.95-.5-3.26-1.85-.31-1.35.65-2.72 2.14-3.08.01 0 .03-.01.04-.01.01 0 .01 0 .02-.01.21-.05.48-.12.68-.16.88-.17 1.6-.13 2.43-.19 1.77-.19 3.23-.34 4.53-.75.41-.17.81-.74 1.09-1.1l1.06-.31c-1.19-8.22.82-16.28 5.16-22.81l-.81-.72c-.05-.32-.12-1.04-.51-1.46-.99-.93-2.25-1.71-3.76-2.64-.72-.42-1.38-.69-2.1-1.23-.15-.11-.36-.29-.52-.42-.01-.01-.03-.02-.04-.03-1.21-.97-1.49-2.64-.62-3.73.49-.61 1.24-.92 2.01-.89.6.02 1.23.24 1.76.66.17.14.41.32.56.45.68.58 1.09 1.16 1.66 1.77 1.25 1.27 2.28 2.32 3.41 3.08.59.35 1.05.21 1.5.15.15.11.63.46.91.65 4.3-4.57 9.96-7.95 16.52-9.44 1.53-.35 3.05-.58 4.57-.7l.06-1.07c.34-.33.71-.79.82-1.31.11-1.36-.07-2.82-.28-4.59-.12-.82-.31-1.51-.35-2.4-.01-.18 0-.44.01-.65 0-.02-.01-.05-.01-.07 0-1.55 1.13-2.81 2.53-2.81s2.53 1.26 2.53 2.81c0 .22.01.52.01.72-.03.89-.23 1.58-.35 2.4-.21 1.76-.4 3.23-.29 4.59.1.68.5.95.83 1.26.01.18.04.79.06 1.13 8.04.71 15.5 4.39 20.99 10.14l.96-.69c.33.02 1.04.12 1.53-.17 1.13-.76 2.16-1.82 3.41-3.08.57-.61.99-1.18 1.67-1.77.15-.13.39-.31.56-.45 1.21-.97 2.9-.86 3.77.23s.59 2.76-.62 3.73c-.17.14-.39.33-.56.45-.72.53-1.38.8-2.1 1.23-1.51.93-2.77 1.71-3.76 2.64-.47.5-.43.98-.48 1.43-.14.13-.63.57-.9.8a32.75 32.75 0 014.74 10.95c.92 3.99 1.06 7.97.53 11.8l1.02.3c.18.26.56.89 1.09 1.1 1.3.41 2.76.56 4.53.75.83.07 1.55.03 2.43.19.21.04.52.12.73.17 1.5.37 2.45 1.74 2.14 3.09z"></path>
@@ -129,28 +130,33 @@ Or instead of the ngrok agent, get started another way:
 
 Once ngrok is in front of your app, you can add authentication, acceleration, transformation, and other behaviors.
 
-<div className="ngrok--cards ngrok--cards-row">
-	<Link to={`/http/basic-auth/`}>
+<div className="ngrok--cards ngrok--cards-flex ngrok--cards-row">
+	<Link to={`/http/traffic-policy/actions/basic-auth/`}>
 		<div className="ngrok--card">
 			<div className="ngrok--card-heading">
 				<h3>Basic Auth</h3>
 			</div>
-			<p>Require a username and password with HTTP Basic Auth.</p>
+			<p>
+				Require a username and password with HTTP Basic Auth in traffic policy.
+			</p>
 			<a>Read more →</a>
 		</div>
 	</Link>
-	<Link to={`/http/ip-restrictions/`}>
+	<Link to={`/http/traffic-policy/actions/restrict-ips/`}>
 		<div className="ngrok--card">
 			<div className="ngrok--card-heading">
 				<h3>IP Restrictions</h3>
 			</div>
-			<p>Allow or deny traffic based on the source IP of connections.</p>
+			<p>
+				Allow or deny traffic based on the source IP of connections uning
+				traffic policy.
+			</p>
 			<a>Read more →</a>
 		</div>
 	</Link>
 </div>
 
-<div className="ngrok--cards ngrok--cards-row">
+<div className="ngrok--cards ngrok--cards-flex ngrok--cards-row">
 	<Link to={`/http/oauth/`}>
 		<div className="ngrok--card">
 			<div className="ngrok--card-heading">
@@ -160,7 +166,7 @@ Once ngrok is in front of your app, you can add authentication, acceleration, tr
 			<a>Read more →</a>
 		</div>
 	</Link>
-	<Link to={`/http/webhook-verification/`}>
+	<Link to={`/http/traffic-policy/actions/verify-webhook/`}>
 		<div className="ngrok--card">
 			<div className="ngrok--card-heading">
 				<h3>Webhook Verification</h3>
@@ -174,8 +180,8 @@ Once ngrok is in front of your app, you can add authentication, acceleration, tr
 	</Link>
 </div>
 
-<div className="ngrok--cards ngrok--cards-row">
-	<Link to={`/http/request-headers/`}>
+<div className="ngrok--cards ngrok--cards-flex ngrok--cards-row">
+	<Link to={`/http/traffic-policy/actions/add-headers/`}>
 		<div className="ngrok--card">
 			<div className="ngrok--card-heading">
 				<h3>Request Headers</h3>
@@ -198,7 +204,7 @@ Once ngrok is in front of your app, you can add authentication, acceleration, tr
 	</Link>
 </div>
 
-<div className="ngrok--cards ngrok--cards-row">
+<div className="ngrok--cards ngrok--cards-flex ngrok--cards-row">
 	<Link to={`/http/mutual-tls/`}>
 		<div className="ngrok--card">
 			<div className="ngrok--card-heading">
@@ -222,7 +228,7 @@ Once ngrok is in front of your app, you can add authentication, acceleration, tr
 	</Link>
 </div>
 
-<div className="ngrok--cards ngrok--cards-row">
+<div className="ngrok--cards ngrok--cards-flex ngrok--cards-row">
 	<Link to={`/http/user-agent-filter/`}>
 		<div className="ngrok--card">
 			<div className="ngrok--card-heading">
@@ -235,7 +241,7 @@ Once ngrok is in front of your app, you can add authentication, acceleration, tr
 			<a>Read more →</a>
 		</div>
 	</Link>
-	<Link to={`/http/circuit-breaker/`}>
+	<Link to={`/http/traffic-policy/actions/circuit-breaker/`}>
 		<div className="ngrok--card">
 			<div className="ngrok--card-heading">
 				<h3>Circuit Breaker</h3>
@@ -256,7 +262,7 @@ Once ngrok is in front of your app, you can add authentication, acceleration, tr
 
 ## Reference
 
-<div className="ngrok--cards ngrok--cards-row">
+<div className="ngrok--cards ngrok--cards-flex ngrok--cards-row">
 	<Link to={`/agent/cli/`}>
 		<div className="ngrok--card">
 			<div className="ngrok--card-heading">
@@ -276,7 +282,7 @@ Once ngrok is in front of your app, you can add authentication, acceleration, tr
 		</div>
 	</Link>
 </div>
-<div className="ngrok--cards ngrok--cards-row">
+<div className="ngrok--cards ngrok--cards-flex ngrok--cards-row">
 	<Link to={`/api/reference/`}>
 		<div className="ngrok--card">
 			<div className="ngrok--card-heading">
@@ -296,7 +302,7 @@ Once ngrok is in front of your app, you can add authentication, acceleration, tr
 		</div>
 	</Link>
 </div>
-<div className="ngrok--cards ngrok--cards-row">
+<div className="ngrok--cards ngrok--cards-flex ngrok--cards-row">
 	<Link to={`/agent/cli/`}>
 		<div className="ngrok--card">
 			<div className="ngrok--card-heading">
@@ -319,7 +325,7 @@ Once ngrok is in front of your app, you can add authentication, acceleration, tr
 
 ## Agent SDK Reference
 
-<div className="ngrok--cards ngrok--cards-row">
+<div className="ngrok--cards ngrok--cards-flex ngrok--cards-row">
 	<Link to={`https://pkg.go.dev/golang.ngrok.com/ngrok/`}>
 		<div className="ngrok--card">
 			<div className="ngrok--card-heading jc-space-between">
@@ -354,7 +360,7 @@ Once ngrok is in front of your app, you can add authentication, acceleration, tr
 		</div>
 	</Link>
 </div>
-<div className="ngrok--cards ngrok--cards-row">
+<div className="ngrok--cards ngrok--cards-flex ngrok--cards-row">
 	<Link to={`https://ngrok.github.io/ngrok-javascript/`}>
 		<div className="ngrok--card">
 			<div className="ngrok--card-heading jc-space-between">
@@ -387,7 +393,7 @@ Once ngrok is in front of your app, you can add authentication, acceleration, tr
 
 Follow tutorials for common tasks when working with ngrok.
 
-<div className="ngrok--cards ngrok--cards-row">
+<div className="ngrok--cards ngrok--cards-flex ngrok--cards-row">
 	<Link to={`/agent/web-inspection-interface/`}>
 		<div className="ngrok--card">
 			<div className="ngrok--card-heading">
@@ -413,5 +419,5 @@ Follow tutorials for common tasks when working with ngrok.
 
 <p style={{ textAlign: "right" }}>
 	{" "}
-	<a href="/guides/">All Guides →</a>
+	<a href="/docs/guides/">All Guides →</a>
 </p>

@@ -4,18 +4,18 @@
 
 ```json
 {
+	"next_page_uri": null,
 	"reserved_addrs": [
 		{
-			"id": "ra_2XH3WC5ZlhxcYcxwpRqBLQIuU6J",
-			"uri": "https://api.ngrok.com/reserved_addrs/ra_2XH3WC5ZlhxcYcxwpRqBLQIuU6J",
-			"created_at": "2023-10-25T22:19:23Z",
-			"description": "SSH for device #001",
 			"addr": "1.tcp.ngrok.io:20000",
+			"created_at": "2024-10-17T20:26:23Z",
+			"description": "SSH for device #001",
+			"endpoint_configuration": null,
+			"id": "ra_2na2IChMACZBnz7nK30tfVUepJp",
 			"region": "us",
-			"endpoint_configuration": null
+			"uri": "https://api.ngrok.com/reserved_addrs/ra_2na2IChMACZBnz7nK30tfVUepJp"
 		}
 	],
-	"uri": "https://api.ngrok.com/reserved_addrs",
-	"next_page_uri": null
+	"uri": "https://api.ngrok.com/reserved_addrs"
 }
 ```

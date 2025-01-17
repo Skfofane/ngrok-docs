@@ -1,13 +1,13 @@
-import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import KubernetesExample from "/examples/k8s/http-compression.mdx";
+import Tabs from "@theme/Tabs";
 import AgentCliExample from "/examples/agent-cli/http-compression.mdx";
 import AgentConfigExample from "/examples/agent-config/http-compression.mdx";
-import SshExample from "/examples/ssh/http-compression.mdx";
 import GoSdkExample from "/examples/go-sdk/http-compression.mdx";
 import JavascriptSdkExample from "/examples/javascript-sdk/http-compression.mdx";
+import KubernetesExample from "/examples/k8s/http-compression.mdx";
 import PythonSdkExample from "/examples/python-sdk/http-compression.mdx";
 import RustSdkExample from "/examples/rust-sdk/http-compression.mdx";
+import SshExample from "/examples/ssh/http-compression.mdx";
 
 # Compression
 
@@ -122,7 +122,7 @@ When this module is enabled, it populates the following fields in
 
 Compression is an HTTPS Edge module which can be applied to Routes.
 
-- [Compression Edge Module API Resource](/api/resources/https-edge-route-compression-module/)
+- [Compression Edge Module API Resource](/api/resources/edge-route-compression-module/)
 
 ### Pricing
 
@@ -147,7 +147,7 @@ First let's see what this looks like without using compression by running the
 following in your `test-dir` directory:
 
 ```bash
-ngrok http file://`pwd` --domain your-domain.ngrok.app
+ngrok http file://`pwd` --url your-domain.ngrok.app
 ```
 
 Then in another terminal while ngrok is still running:
@@ -180,7 +180,7 @@ Now let's try it again with compression. Stop your ngrok agent and restart it
 by changing the command to:
 
 ```bash
-ngrok http file://`pwd` --domain your-domain.ngrok.app --compression
+ngrok http file://`pwd` --url your-domain.ngrok.app --compression
 ```
 
 Rerun the same curl command:

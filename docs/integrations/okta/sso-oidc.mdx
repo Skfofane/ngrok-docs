@@ -55,6 +55,7 @@ To integrate ngrok with Okta SSO, you will need to:
    1. **Login initiated by**: Login initiated by app
 1. Click **Done**.
 1. Under the **Sign On** tab of the ngrok application, **copy the Client ID and Client Secret**. These values will be used at ngrok to complete the configuration.
+1. In the ngrok configuration under Scopes add the following OAuth Scopes: `openid,profile,email`
 
 ### Grant access to Okta people and groups
 
@@ -77,13 +78,13 @@ ngrok can leverage Okta SSO in two ways:
 > **Note:** For this tutorial, we assume you have an app running locally (i.e., on localhost:3000) with the ngrok client installed.
 
 1. Launch a terminal
-1. Enter the following command to launch an ngrok tunnel with Okta SSO. Replace `<okta_url>` with your okta org address (i.e., https://acme.okta.com) and the `<okta_client_id>` and `<okta_client_secret>` with the respective values copied from the ngrok app registered at Okta. Optionally, add the `--domain <domain>` argument to get your own custom URL, replacing `<domain>` with your URL of preference:
+1. Enter the following command to launch an ngrok tunnel with Okta SSO. Replace `<okta_url>` with your okta org address (i.e., https://acme.okta.com) and the `<okta_client_id>` and `<okta_client_secret>` with the respective values copied from the ngrok app registered at Okta. Optionally, add the `--url <domain>` argument to get your own custom URL, replacing `<domain>` with your URL of preference:
 
    ```bash
    ngrok http 3000 --oidc=<okta_url> \
    --oidc-client-id=<okta_client_id> \
    --oidc-client-secret=<okta_client_secret> \
-   --domain=<domain>
+   --url=<domain>
    ```
 
 1. Copy the url available next to **Forwarding** (for example, `https://okta-sso-test.ngrok.dev`).
@@ -95,7 +96,7 @@ ngrok can leverage Okta SSO in two ways:
 To configure an edge with Okta:
 
 1. Go to dashboard.ngrok.com.
-1. Click **Cloud Edge** > **Edges**
+1. Click **Universal Gateway** > **Edges**
 1. If you don't have an edge already set to add Okta SSO, create a test edge:
    - Click **New Edge**
    - Click **HTTPS Edge**

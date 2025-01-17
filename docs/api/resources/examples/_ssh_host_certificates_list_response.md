@@ -4,22 +4,22 @@
 
 ```json
 {
+	"next_page_uri": null,
 	"ssh_host_certificates": [
 		{
-			"id": "shcrt_2XH3sTfdPCKvIOWXV20gYvzmLzc",
-			"uri": "https://api.ngrok.com/ssh_host_certificates/shcrt_2XH3sTfdPCKvIOWXV20gYvzmLzc",
-			"created_at": "2023-10-25T22:19:44Z",
+			"certificate": "ecdsa-sha2-nistp256-cert-v01@openssh.com AAAAKGVjZHNhLXNoYTItbmlzdHAyNTYtY2VydC12MDFAb3BlbnNzaC5jb20AAAAgq5MZxRJB6UyBeXq088sZa1MJJMGWFTc9B94N9TyE1wUAAAAIbmlzdHAyNTYAAABBBI3oSgxrOEJ+tIJ/n6VYtxQIFvynqlOHpfOAJ4x4OfmMYDkbf8dr6RAuUSf+ZC2HMCujta7EjZ9t+6v08Ue+CgkAAAAAAAAAAAAAAAIAAAAhc2hjcnRfMm5hMkwzUmpZUjAyZ0o2WlA0ejFaSVlma2duAAAAJAAAABNpbmNvbnNocmV2ZWFibGUuY29tAAAACTEwLjIuNDIuOQAAAABnEXMGAAAAAGeIGgYAAAAAAAAAAAAAAAAAAAAzAAAAC3NzaC1lZDI1NTE5AAAAIIbo4eGATx+ed58W+ZO1FPv05usYpDXWXTnlZHS/Nbm+AAAAUwAAAAtzc2gtZWQyNTUxOQAAAEDYnyqWCeLh8+9vmZ8pu5ZjZxxswNr3qkdoWLX0SHc1hhXZ18pv31bUUrwyeZ1gj5A910aSbYSwWwMhege2VoQH shcrt_2na2L3RjYR02gJ6ZP4z1ZIYfkgn",
+			"created_at": "2024-10-17T20:26:46Z",
 			"description": "personal server",
-			"public_key": "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI3oSgxrOEJ+tIJ/n6VYtxQIFvynqlOHpfOAJ4x4OfmMYDkbf8dr6RAuUSf+ZC2HMCujta7EjZ9t+6v08Ue+Cgk= inconshreveable.com",
+			"id": "shcrt_2na2L3RjYR02gJ6ZP4z1ZIYfkgn",
 			"key_type": "ecdsa",
-			"ssh_certificate_authority_id": "sshca_2XH3sYdBgOU6xMnSdD4gXT2bOyh",
 			"principals": ["inconshreveable.com", "10.2.42.9"],
-			"valid_after": "2023-10-25T22:19:44Z",
-			"valid_until": "2024-01-23T22:19:44Z",
-			"certificate": "ecdsa-sha2-nistp256-cert-v01@openssh.com AAAAKGVjZHNhLXNoYTItbmlzdHAyNTYtY2VydC12MDFAb3BlbnNzaC5jb20AAAAg0HbV1azWsREbqFtHLJbDHqyaaxMNDESwn6//8j3CrgQAAAAIbmlzdHAyNTYAAABBBI3oSgxrOEJ+tIJ/n6VYtxQIFvynqlOHpfOAJ4x4OfmMYDkbf8dr6RAuUSf+ZC2HMCujta7EjZ9t+6v08Ue+CgkAAAAAAAAAAAAAAAIAAAAhc2hjcnRfMlhIM3NUZmRQQ0t2SU9XWFYyMGdZdnptTHpjAAAAJAAAABNpbmNvbnNocmV2ZWFibGUuY29tAAAACTEwLjIuNDIuOQAAAABlOZSAAAAAAGWwO4AAAAAAAAAAAAAAAAAAAAAzAAAAC3NzaC1lZDI1NTE5AAAAIPtBNcTme2k+CKvMpUoCvdL8D69Xbf7/xDNY/8eqY1abAAAAUwAAAAtzc2gtZWQyNTUxOQAAAEBeM17H+qUeRNmfNvpcxtC+a/07lZAvlrnVvP9h5sqItIHPmn4xinkrWUtsns0tD9A19xl2+018ekTTQyS2FtMP shcrt_2XH3sTfdPCKvIOWXV20gYvzmLzc"
+			"public_key": "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI3oSgxrOEJ+tIJ/n6VYtxQIFvynqlOHpfOAJ4x4OfmMYDkbf8dr6RAuUSf+ZC2HMCujta7EjZ9t+6v08Ue+Cgk= inconshreveable.com",
+			"ssh_certificate_authority_id": "sshca_2na2L5YnAWeH88MHlshTpH8oOLi",
+			"uri": "https://api.ngrok.com/ssh_host_certificates/shcrt_2na2L3RjYR02gJ6ZP4z1ZIYfkgn",
+			"valid_after": "2024-10-17T20:26:46Z",
+			"valid_until": "2025-01-15T20:26:46Z"
 		}
 	],
-	"uri": "https://api.ngrok.com/ssh_host_certificates",
-	"next_page_uri": null
+	"uri": "https://api.ngrok.com/ssh_host_certificates"
 }
 ```

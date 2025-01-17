@@ -2,7 +2,7 @@
 
 ## Domains
 
-Domain objects enable you to create [Endpoints](/concepts/#endpoints) to listen
+Domain objects enable you to create [Endpoints](/http/) to listen
 for traffic on those domain names. Domains may be a subdomain of an
 ngrok-managed base domain like `foo.ngrok.app` or you can bring your own
 [branded domain](#branded-domains) like `foo.example.com`.
@@ -57,6 +57,13 @@ because the DNS RFC does not permit CNAMEs for apex domains. Because of how
 ALIAS/CNAME flattening is implemented, apex domains can not take advantage of
 [Global Server Load Balancing](/network-edge/gslb).
 
+### Apex Domain
+
+It is possible to reserve your apex domain, sometimes referred to as a domain apex (i.e. `example.com`), using the ngrok dashboard or API.
+However, you will need to create a `CNAME` record in place of your `A` record, which not all DNS providers support.
+If you are trying to reserve your apex domain because you need to create endpoints for multiple subdomains, you should
+use a wildcard domain instead.
+
 ### Wildcard Domains
 
 You may also create a wildcard domain on your ngrok account. For example,
@@ -66,6 +73,10 @@ the use of wildcard domains. The wildcard `*` character may only be used as the
 first part of a domain, you may not create domains like `app.*.example.com` or
 `*-app.example.com`.
 
+You may create wildcard domains on ngrok managed domains. You must first reserve
+an ngrok domain like `example.ngrok.app` first. You can then reserve a second
+domain that is a wildcard domain from your base domain, like `*.example.ngrok.app`.
+
 Once you have created a wildcard domain object, you may create an endpoint on
 it via the [Agent](/agent/) or attach it to an [Edge](/network-edge/edges/).
 For example:
@@ -73,7 +84,7 @@ For example:
 ###### Listen for all subdomains of `example.com`
 
 ```bash
-ngrok http 80 --domain *.example.com
+ngrok http 80 --url "*.example.com"
 ```
 
 The following rules define the behavior of endpoints on wildcard domains. To
@@ -83,7 +94,7 @@ illustrate the rules, assume you have created the wildcard domain
 - Connections to nested subdomains (e.g. `foo.bar.baz.example.com`) will route
   to a wildcard endpoint of `*.example.com`.
 - You may create endpoints on any valid subdomain of `example.com` without
-  creating an additional Domain object. For example, `ngrok 80 http --domain
+  creating an additional Domain object. For example, `ngrok 80 http --url
 foo.bar.baz.example.com` works without creating a domain for
   `foo.bar.baz.example.com`.
 - Connections are routed to the most specific online endpoint. If there are
@@ -110,6 +121,10 @@ TCP Addresses are a network address: a host and port. You may use TCP addresses
 to deliver applications via TCP endpoints. TCP Address look something like
 `1.tcp.eu.ngrok.io:12345`.
 
+::::note
+TCP endpoints are only available on a free plan after adding a valid payment method to your account.
+::::
+
 You may [provision TCP addresses via API](/api/resources/reserved-addrs/).
 
 ### Ephemeral addresses
@@ -124,22 +139,20 @@ The hostname and port of the TCP Address is randomly assigned when you create
 it, after which it will not change. You may not choose the hostname or port.
 The port of your TCP address is uniquely assigned to your account, but other
 ports on that same hostname may be assigned to other accounts. While the
-hostname and port of a TCP Address is fixed, they do not have [static
-IPs](#ip-addresses).
+hostname and port of a TCP Address is fixed, they do not have static
+IPs.
 
 ### GSLB support
 
-Unlike [Domains](#domains), TCP Addresses are not region-independent. They do
-not support [global server load balancing](/network-edge/gslb). When you create
-a TCP Address, you provision it in a region of your choice. Connections to that
-address are received exclusively in that region.
+TCP Addresses do not support [global server load balancing](/network-edge/gslb),
+but TCP addresses provisioned in one region can be served by agents connected
+to any other region.
 
-Beyond that that, when you create an endpoint on a TCP address, you must
-instruct your Agent or Agent SDK to connect explicitly to the region the TCP
-Address was provisioned in. For example, if your TCP address is
-`1.tcp.eu.ngrok.io:12345` you must invoke the ngrok agent with the matching
-region, like:
+For example, if your TCP address is `1.tcp.eu.ngrok.io:12345` you can
+invoke the ngrok agent by omitting the region, which will automatically
+connect you to the best region for you, even if it doesn't match the
+region in the TCP address:
 
 ```bash
-ngrok tcp 22 --region=eu --remote-addr 1.tcp.eu.ngrok.io:12345
+ngrok tcp 22 --remote-addr 1.tcp.eu.ngrok.io:12345
 ```

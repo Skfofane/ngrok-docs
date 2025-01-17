@@ -1,11 +1,11 @@
 import EdgesHTTPSRoutesCreateRequest from "./examples/_edges_https_routes_create_request.md";
 import EdgesHTTPSRoutesCreateResponse from "./examples/_edges_https_routes_create_response.md";
+import EdgesHTTPSRoutesDeleteRequest from "./examples/_edges_https_routes_delete_request.md";
+import EdgesHTTPSRoutesDeleteResponse from "./examples/_edges_https_routes_delete_response.md";
 import EdgesHTTPSRoutesGetRequest from "./examples/_edges_https_routes_get_request.md";
 import EdgesHTTPSRoutesGetResponse from "./examples/_edges_https_routes_get_response.md";
 import EdgesHTTPSRoutesUpdateRequest from "./examples/_edges_https_routes_update_request.md";
 import EdgesHTTPSRoutesUpdateResponse from "./examples/_edges_https_routes_update_response.md";
-import EdgesHTTPSRoutesDeleteRequest from "./examples/_edges_https_routes_delete_request.md";
-import EdgesHTTPSRoutesDeleteResponse from "./examples/_edges_https_routes_delete_response.md";
 
 # Edges HTTPS Routes
 
@@ -15,13 +15,13 @@ Create an HTTPS Edge Route
 
 ### Request
 
-POST /edges/https/{edge_id}/routes
+POST /edges/https/\{edge_id\}/routes
 
 <EdgesHTTPSRoutesCreateRequest />
 
 #### Parameters
 
-| &nbsp;                    | &nbsp;                                                                     | &nbsp;                                                                                  |
+| Name                      | Type                                                                       | Description                                                                             |
 | ------------------------- | -------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | `edge_id`                 | string                                                                     | unique identifier of this edge                                                          |
 | `match_type`              | string                                                                     | Type of match to use for this route. Valid values are "exact_path" and "path_prefix".   |
@@ -39,24 +39,26 @@ POST /edges/https/{edge_id}/routes
 | `saml`                    | [EndpointSAMLMutate](#endpointsamlmutate-parameters)                       | saml module configuration or `null`                                                     |
 | `oidc`                    | [EndpointOIDC](#endpointoidc-parameters)                                   | oidc module configuration or `null`                                                     |
 | `websocket_tcp_converter` | [EndpointWebsocketTCPConverter](#endpointwebsockettcpconverter-parameters) | websocket to tcp adapter configuration or `null`                                        |
+| `user_agent_filter`       | [EndpointUserAgentFilter](#endpointuseragentfilter-parameters)             |                                                                                         |
+| `traffic_policy`          | [EndpointTrafficPolicy](#endpointtrafficpolicy-parameters)                 | the traffic policy associated with this edge or null                                    |
 
 #### EndpointBackendMutate parameters
 
-| &nbsp;       | &nbsp;  | &nbsp;                                                                                             |
+| Name         | Type    | Description                                                                                        |
 | ------------ | ------- | -------------------------------------------------------------------------------------------------- |
 | `enabled`    | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
 | `backend_id` | string  | backend to be used to back this endpoint                                                           |
 
 #### EndpointIPPolicyMutate parameters
 
-| &nbsp;          | &nbsp;             | &nbsp;                                                                                              |
+| Name            | Type               | Description                                                                                         |
 | --------------- | ------------------ | --------------------------------------------------------------------------------------------------- |
 | `enabled`       | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified  |
 | `ip_policy_ids` | List&lt;string&gt; | list of all IP policies that will be used to check if a source IP is allowed access to the endpoint |
 
 #### EndpointCircuitBreaker parameters
 
-| &nbsp;                       | &nbsp;  | &nbsp;                                                                                                       |
+| Name                         | Type    | Description                                                                                                  |
 | ---------------------------- | ------- | ------------------------------------------------------------------------------------------------------------ |
 | `enabled`                    | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified           |
 | `tripped_duration`           | uint32  | Integer number of seconds after which the circuit is tripped to wait before re-evaluating upstream health    |
@@ -67,13 +69,13 @@ POST /edges/https/{edge_id}/routes
 
 #### EndpointCompression parameters
 
-| &nbsp;    | &nbsp;  | &nbsp;                                                                                             |
+| Name      | Type    | Description                                                                                        |
 | --------- | ------- | -------------------------------------------------------------------------------------------------- |
 | `enabled` | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
 
 #### EndpointRequestHeaders parameters
 
-| &nbsp;    | &nbsp;                    | &nbsp;                                                                                                                               |
+| Name      | Type                      | Description                                                                                                                          |
 | --------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | `enabled` | boolean                   | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                   |
 | `add`     | Map&lt;string, string&gt; | a map of header key to header value that will be injected into the HTTP Request before being sent to the upstream application server |
@@ -81,7 +83,7 @@ POST /edges/https/{edge_id}/routes
 
 #### EndpointResponseHeaders parameters
 
-| &nbsp;    | &nbsp;                    | &nbsp;                                                                                                       |
+| Name      | Type                      | Description                                                                                                  |
 | --------- | ------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | `enabled` | boolean                   | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified           |
 | `add`     | Map&lt;string, string&gt; | a map of header key to header value that will be injected into the HTTP Response returned to the HTTP client |
@@ -89,7 +91,7 @@ POST /edges/https/{edge_id}/routes
 
 #### EndpointWebhookValidation parameters
 
-| &nbsp;     | &nbsp;  | &nbsp;                                                                                                                                                                                                       |
+| Name       | Type    | Description                                                                                                                                                                                                  |
 | ---------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `enabled`  | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                                                           |
 | `provider` | string  | a string indicating which webhook provider will be sending webhooks to this endpoint. Value must be one of the supported providers defined at https://ngrok.com/docs/cloud-edge/modules/webhook-verification |
@@ -97,7 +99,7 @@ POST /edges/https/{edge_id}/routes
 
 #### EndpointOAuth parameters
 
-| &nbsp;                | &nbsp;                                                     | &nbsp;                                                                                                                                                                                                                                                                                                                                   |
+| Name                  | Type                                                       | Description                                                                                                                                                                                                                                                                                                                              |
 | --------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `enabled`             | boolean                                                    | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                                                                                                                                                                                       |
 | `provider`            | [EndpointOAuthProvider](#endpointoauthprovider-parameters) | an object which defines the identity provider to use for authentication and configuration for who may access the endpoint                                                                                                                                                                                                                |
@@ -109,7 +111,7 @@ POST /edges/https/{edge_id}/routes
 
 #### EndpointOAuthProvider parameters
 
-| &nbsp;      | &nbsp;                                                       | &nbsp;                                                     |
+| Name        | Type                                                         | Description                                                |
 | ----------- | ------------------------------------------------------------ | ---------------------------------------------------------- |
 | `github`    | [EndpointOAuthGitHub](#endpointoauthgithub-parameters)       | configuration for using github as the identity provider    |
 | `facebook`  | [EndpointOAuthFacebook](#endpointoauthfacebook-parameters)   | configuration for using facebook as the identity provider  |
@@ -122,7 +124,7 @@ POST /edges/https/{edge_id}/routes
 
 #### EndpointOAuthGitHub parameters
 
-| &nbsp;            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                                         |
+| Name              | Type               | Description                                                                                                                                                                                                                                                                                                                    |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `client_id`       | string             | the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well. |
 | `client_secret`   | string             | the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.                                                                                                                                            |
@@ -134,7 +136,7 @@ POST /edges/https/{edge_id}/routes
 
 #### EndpointOAuthFacebook parameters
 
-| &nbsp;            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                                         |
+| Name              | Type               | Description                                                                                                                                                                                                                                                                                                                    |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `client_id`       | string             | the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well. |
 | `client_secret`   | string             | the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.                                                                                                                                            |
@@ -144,7 +146,7 @@ POST /edges/https/{edge_id}/routes
 
 #### EndpointOAuthMicrosoft parameters
 
-| &nbsp;            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                                         |
+| Name              | Type               | Description                                                                                                                                                                                                                                                                                                                    |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `client_id`       | string             | the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well. |
 | `client_secret`   | string             | the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.                                                                                                                                            |
@@ -154,7 +156,7 @@ POST /edges/https/{edge_id}/routes
 
 #### EndpointOAuthGoogle parameters
 
-| &nbsp;            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                                         |
+| Name              | Type               | Description                                                                                                                                                                                                                                                                                                                    |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `client_id`       | string             | the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well. |
 | `client_secret`   | string             | the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.                                                                                                                                            |
@@ -164,47 +166,47 @@ POST /edges/https/{edge_id}/routes
 
 #### EndpointOAuthLinkedIn parameters
 
-| &nbsp;            | &nbsp;             | &nbsp; |
-| ----------------- | ------------------ | ------ |
-| `client_id`       | string             |        |
-| `client_secret`   | string             |        |
-| `scopes`          | List&lt;string&gt; |        |
-| `email_addresses` | List&lt;string&gt; |        |
-| `email_domains`   | List&lt;string&gt; |        |
+| Name              | Type               | Description |
+| ----------------- | ------------------ | ----------- |
+| `client_id`       | string             |             |
+| `client_secret`   | string             |             |
+| `scopes`          | List&lt;string&gt; |             |
+| `email_addresses` | List&lt;string&gt; |             |
+| `email_domains`   | List&lt;string&gt; |             |
 
 #### EndpointOAuthGitLab parameters
 
-| &nbsp;            | &nbsp;             | &nbsp; |
-| ----------------- | ------------------ | ------ |
-| `client_id`       | string             |        |
-| `client_secret`   | string             |        |
-| `scopes`          | List&lt;string&gt; |        |
-| `email_addresses` | List&lt;string&gt; |        |
-| `email_domains`   | List&lt;string&gt; |        |
+| Name              | Type               | Description |
+| ----------------- | ------------------ | ----------- |
+| `client_id`       | string             |             |
+| `client_secret`   | string             |             |
+| `scopes`          | List&lt;string&gt; |             |
+| `email_addresses` | List&lt;string&gt; |             |
+| `email_domains`   | List&lt;string&gt; |             |
 
 #### EndpointOAuthTwitch parameters
 
-| &nbsp;            | &nbsp;             | &nbsp; |
-| ----------------- | ------------------ | ------ |
-| `client_id`       | string             |        |
-| `client_secret`   | string             |        |
-| `scopes`          | List&lt;string&gt; |        |
-| `email_addresses` | List&lt;string&gt; |        |
-| `email_domains`   | List&lt;string&gt; |        |
+| Name              | Type               | Description |
+| ----------------- | ------------------ | ----------- |
+| `client_id`       | string             |             |
+| `client_secret`   | string             |             |
+| `scopes`          | List&lt;string&gt; |             |
+| `email_addresses` | List&lt;string&gt; |             |
+| `email_domains`   | List&lt;string&gt; |             |
 
 #### EndpointOAuthAmazon parameters
 
-| &nbsp;            | &nbsp;             | &nbsp; |
-| ----------------- | ------------------ | ------ |
-| `client_id`       | string             |        |
-| `client_secret`   | string             |        |
-| `scopes`          | List&lt;string&gt; |        |
-| `email_addresses` | List&lt;string&gt; |        |
-| `email_domains`   | List&lt;string&gt; |        |
+| Name              | Type               | Description |
+| ----------------- | ------------------ | ----------- |
+| `client_id`       | string             |             |
+| `client_secret`   | string             |             |
+| `scopes`          | List&lt;string&gt; |             |
+| `email_addresses` | List&lt;string&gt; |             |
+| `email_domains`   | List&lt;string&gt; |             |
 
 #### EndpointSAMLMutate parameters
 
-| &nbsp;                | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                     |
+| Name                  | Type               | Description                                                                                                                                                                                                                                                                                                |
 | --------------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `enabled`             | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                                                                                                                                                         |
 | `options_passthrough` | boolean            | Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.                                                                                                                                                                                                              |
@@ -219,7 +221,7 @@ POST /edges/https/{edge_id}/routes
 
 #### EndpointOIDC parameters
 
-| &nbsp;                | &nbsp;             | &nbsp;                                                                                                                                                                |
+| Name                  | Type               | Description                                                                                                                                                           |
 | --------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `enabled`             | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                    |
 | `options_passthrough` | boolean            | Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.                                                                         |
@@ -233,9 +235,24 @@ POST /edges/https/{edge_id}/routes
 
 #### EndpointWebsocketTCPConverter parameters
 
-| &nbsp;    | &nbsp;  | &nbsp;                                                                                             |
+| Name      | Type    | Description                                                                                        |
 | --------- | ------- | -------------------------------------------------------------------------------------------------- |
 | `enabled` | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
+
+#### EndpointUserAgentFilter parameters
+
+| Name      | Type               | Description |
+| --------- | ------------------ | ----------- |
+| `enabled` | boolean            |             |
+| `allow`   | List&lt;string&gt; |             |
+| `deny`    | List&lt;string&gt; |             |
+
+#### EndpointTrafficPolicy parameters
+
+| Name      | Type    | Description                                                                                        |
+| --------- | ------- | -------------------------------------------------------------------------------------------------- |
+| `enabled` | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
+| `value`   | string  | the traffic policy that should be applied to the traffic on your endpoint.                         |
 
 ### Response
 
@@ -245,7 +262,7 @@ Returns a 201 response on success
 
 #### Fields
 
-| &nbsp;                    | &nbsp;                                                                 | &nbsp;                                                                                  |
+| Name                      | Type                                                                   | Description                                                                             |
 | ------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | `edge_id`                 | string                                                                 | unique identifier of this edge                                                          |
 | `id`                      | string                                                                 | unique identifier of this edge route                                                    |
@@ -266,31 +283,33 @@ Returns a 201 response on success
 | `saml`                    | [EndpointSAML](#endpointsaml-fields)                                   | saml module configuration or `null`                                                     |
 | `oidc`                    | [EndpointOIDC](#endpointoidc-fields)                                   | oidc module configuration or `null`                                                     |
 | `websocket_tcp_converter` | [EndpointWebsocketTCPConverter](#endpointwebsockettcpconverter-fields) | websocket to tcp adapter configuration or `null`                                        |
+| `user_agent_filter`       | [EndpointUserAgentFilter](#endpointuseragentfilter-fields)             |                                                                                         |
+| `traffic_policy`          | [EndpointTrafficPolicy](#endpointtrafficpolicy-fields)                 | the traffic policy associated with this edge or null                                    |
 
 #### EndpointBackend fields
 
-| &nbsp;    | &nbsp;             | &nbsp;                                                                                             |
+| Name      | Type               | Description                                                                                        |
 | --------- | ------------------ | -------------------------------------------------------------------------------------------------- |
 | `enabled` | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
 | `backend` | [Ref](#ref-fields) | backend to be used to back this endpoint                                                           |
 
 #### Ref fields
 
-| &nbsp; | &nbsp; | &nbsp;                        |
-| ------ | ------ | ----------------------------- |
-| `id`   | string | a resource identifier         |
-| `uri`  | string | a uri for locating a resource |
+| Name  | Type   | Description                   |
+| ----- | ------ | ----------------------------- |
+| `id`  | string | a resource identifier         |
+| `uri` | string | a uri for locating a resource |
 
 #### EndpointIPPolicy fields
 
-| &nbsp;        | &nbsp;             | &nbsp;                                                                                              |
+| Name          | Type               | Description                                                                                         |
 | ------------- | ------------------ | --------------------------------------------------------------------------------------------------- |
 | `enabled`     | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified  |
 | `ip_policies` | [Ref](#ref-fields) | list of all IP policies that will be used to check if a source IP is allowed access to the endpoint |
 
 #### EndpointCircuitBreaker fields
 
-| &nbsp;                       | &nbsp;  | &nbsp;                                                                                                       |
+| Name                         | Type    | Description                                                                                                  |
 | ---------------------------- | ------- | ------------------------------------------------------------------------------------------------------------ |
 | `enabled`                    | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified           |
 | `tripped_duration`           | uint32  | Integer number of seconds after which the circuit is tripped to wait before re-evaluating upstream health    |
@@ -301,13 +320,13 @@ Returns a 201 response on success
 
 #### EndpointCompression fields
 
-| &nbsp;    | &nbsp;  | &nbsp;                                                                                             |
+| Name      | Type    | Description                                                                                        |
 | --------- | ------- | -------------------------------------------------------------------------------------------------- |
 | `enabled` | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
 
 #### EndpointRequestHeaders fields
 
-| &nbsp;    | &nbsp;                    | &nbsp;                                                                                                                               |
+| Name      | Type                      | Description                                                                                                                          |
 | --------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | `enabled` | boolean                   | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                   |
 | `add`     | Map&lt;string, string&gt; | a map of header key to header value that will be injected into the HTTP Request before being sent to the upstream application server |
@@ -315,7 +334,7 @@ Returns a 201 response on success
 
 #### EndpointResponseHeaders fields
 
-| &nbsp;    | &nbsp;                    | &nbsp;                                                                                                       |
+| Name      | Type                      | Description                                                                                                  |
 | --------- | ------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | `enabled` | boolean                   | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified           |
 | `add`     | Map&lt;string, string&gt; | a map of header key to header value that will be injected into the HTTP Response returned to the HTTP client |
@@ -323,7 +342,7 @@ Returns a 201 response on success
 
 #### EndpointWebhookValidation fields
 
-| &nbsp;     | &nbsp;  | &nbsp;                                                                                                                                                                                                       |
+| Name       | Type    | Description                                                                                                                                                                                                  |
 | ---------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `enabled`  | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                                                           |
 | `provider` | string  | a string indicating which webhook provider will be sending webhooks to this endpoint. Value must be one of the supported providers defined at https://ngrok.com/docs/cloud-edge/modules/webhook-verification |
@@ -331,7 +350,7 @@ Returns a 201 response on success
 
 #### EndpointOAuth fields
 
-| &nbsp;                | &nbsp;                                                 | &nbsp;                                                                                                                                                                                                                                                                                                                                   |
+| Name                  | Type                                                   | Description                                                                                                                                                                                                                                                                                                                              |
 | --------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `enabled`             | boolean                                                | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                                                                                                                                                                                       |
 | `provider`            | [EndpointOAuthProvider](#endpointoauthprovider-fields) | an object which defines the identity provider to use for authentication and configuration for who may access the endpoint                                                                                                                                                                                                                |
@@ -343,7 +362,7 @@ Returns a 201 response on success
 
 #### EndpointOAuthProvider fields
 
-| &nbsp;      | &nbsp;                                                   | &nbsp;                                                     |
+| Name        | Type                                                     | Description                                                |
 | ----------- | -------------------------------------------------------- | ---------------------------------------------------------- |
 | `github`    | [EndpointOAuthGitHub](#endpointoauthgithub-fields)       | configuration for using github as the identity provider    |
 | `facebook`  | [EndpointOAuthFacebook](#endpointoauthfacebook-fields)   | configuration for using facebook as the identity provider  |
@@ -356,7 +375,7 @@ Returns a 201 response on success
 
 #### EndpointOAuthGitHub fields
 
-| &nbsp;            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                                         |
+| Name              | Type               | Description                                                                                                                                                                                                                                                                                                                    |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `client_id`       | string             | the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well. |
 | `client_secret`   | string             | the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.                                                                                                                                            |
@@ -368,7 +387,7 @@ Returns a 201 response on success
 
 #### EndpointOAuthFacebook fields
 
-| &nbsp;            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                                         |
+| Name              | Type               | Description                                                                                                                                                                                                                                                                                                                    |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `client_id`       | string             | the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well. |
 | `client_secret`   | string             | the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.                                                                                                                                            |
@@ -378,7 +397,7 @@ Returns a 201 response on success
 
 #### EndpointOAuthMicrosoft fields
 
-| &nbsp;            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                                         |
+| Name              | Type               | Description                                                                                                                                                                                                                                                                                                                    |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `client_id`       | string             | the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well. |
 | `client_secret`   | string             | the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.                                                                                                                                            |
@@ -388,7 +407,7 @@ Returns a 201 response on success
 
 #### EndpointOAuthGoogle fields
 
-| &nbsp;            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                                         |
+| Name              | Type               | Description                                                                                                                                                                                                                                                                                                                    |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `client_id`       | string             | the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well. |
 | `client_secret`   | string             | the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.                                                                                                                                            |
@@ -398,47 +417,47 @@ Returns a 201 response on success
 
 #### EndpointOAuthLinkedIn fields
 
-| &nbsp;            | &nbsp;             | &nbsp; |
-| ----------------- | ------------------ | ------ |
-| `client_id`       | string             |        |
-| `client_secret`   | string             |        |
-| `scopes`          | List&lt;string&gt; |        |
-| `email_addresses` | List&lt;string&gt; |        |
-| `email_domains`   | List&lt;string&gt; |        |
+| Name              | Type               | Description |
+| ----------------- | ------------------ | ----------- |
+| `client_id`       | string             |             |
+| `client_secret`   | string             |             |
+| `scopes`          | List&lt;string&gt; |             |
+| `email_addresses` | List&lt;string&gt; |             |
+| `email_domains`   | List&lt;string&gt; |             |
 
 #### EndpointOAuthGitLab fields
 
-| &nbsp;            | &nbsp;             | &nbsp; |
-| ----------------- | ------------------ | ------ |
-| `client_id`       | string             |        |
-| `client_secret`   | string             |        |
-| `scopes`          | List&lt;string&gt; |        |
-| `email_addresses` | List&lt;string&gt; |        |
-| `email_domains`   | List&lt;string&gt; |        |
+| Name              | Type               | Description |
+| ----------------- | ------------------ | ----------- |
+| `client_id`       | string             |             |
+| `client_secret`   | string             |             |
+| `scopes`          | List&lt;string&gt; |             |
+| `email_addresses` | List&lt;string&gt; |             |
+| `email_domains`   | List&lt;string&gt; |             |
 
 #### EndpointOAuthTwitch fields
 
-| &nbsp;            | &nbsp;             | &nbsp; |
-| ----------------- | ------------------ | ------ |
-| `client_id`       | string             |        |
-| `client_secret`   | string             |        |
-| `scopes`          | List&lt;string&gt; |        |
-| `email_addresses` | List&lt;string&gt; |        |
-| `email_domains`   | List&lt;string&gt; |        |
+| Name              | Type               | Description |
+| ----------------- | ------------------ | ----------- |
+| `client_id`       | string             |             |
+| `client_secret`   | string             |             |
+| `scopes`          | List&lt;string&gt; |             |
+| `email_addresses` | List&lt;string&gt; |             |
+| `email_domains`   | List&lt;string&gt; |             |
 
 #### EndpointOAuthAmazon fields
 
-| &nbsp;            | &nbsp;             | &nbsp; |
-| ----------------- | ------------------ | ------ |
-| `client_id`       | string             |        |
-| `client_secret`   | string             |        |
-| `scopes`          | List&lt;string&gt; |        |
-| `email_addresses` | List&lt;string&gt; |        |
-| `email_domains`   | List&lt;string&gt; |        |
+| Name              | Type               | Description |
+| ----------------- | ------------------ | ----------- |
+| `client_id`       | string             |             |
+| `client_secret`   | string             |             |
+| `scopes`          | List&lt;string&gt; |             |
+| `email_addresses` | List&lt;string&gt; |             |
+| `email_domains`   | List&lt;string&gt; |             |
 
 #### EndpointSAML fields
 
-| &nbsp;                            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                     |
+| Name                              | Type               | Description                                                                                                                                                                                                                                                                                                |
 | --------------------------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `enabled`                         | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                                                                                                                                                         |
 | `options_passthrough`             | boolean            | Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.                                                                                                                                                                                                              |
@@ -458,7 +477,7 @@ Returns a 201 response on success
 
 #### EndpointOIDC fields
 
-| &nbsp;                | &nbsp;             | &nbsp;                                                                                                                                                                |
+| Name                  | Type               | Description                                                                                                                                                           |
 | --------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `enabled`             | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                    |
 | `options_passthrough` | boolean            | Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.                                                                         |
@@ -472,9 +491,24 @@ Returns a 201 response on success
 
 #### EndpointWebsocketTCPConverter fields
 
-| &nbsp;    | &nbsp;  | &nbsp;                                                                                             |
+| Name      | Type    | Description                                                                                        |
 | --------- | ------- | -------------------------------------------------------------------------------------------------- |
 | `enabled` | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
+
+#### EndpointUserAgentFilter fields
+
+| Name      | Type               | Description |
+| --------- | ------------------ | ----------- |
+| `enabled` | boolean            |             |
+| `allow`   | List&lt;string&gt; |             |
+| `deny`    | List&lt;string&gt; |             |
+
+#### EndpointTrafficPolicy fields
+
+| Name      | Type    | Description                                                                                        |
+| --------- | ------- | -------------------------------------------------------------------------------------------------- |
+| `enabled` | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
+| `value`   | string  | the traffic policy that should be applied to the traffic on your endpoint.                         |
 
 ## Get HTTPS Edge Route
 
@@ -482,7 +516,7 @@ Get an HTTPS Edge Route by ID
 
 ### Request
 
-GET /edges/https/{edge_id}/routes/{id}
+GET /edges/https/\{edge_id\}/routes/\{id\}
 
 <EdgesHTTPSRoutesGetRequest />
 
@@ -494,7 +528,7 @@ Returns a 200 response on success
 
 #### Fields
 
-| &nbsp;                    | &nbsp;                                                                 | &nbsp;                                                                                  |
+| Name                      | Type                                                                   | Description                                                                             |
 | ------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | `edge_id`                 | string                                                                 | unique identifier of this edge                                                          |
 | `id`                      | string                                                                 | unique identifier of this edge route                                                    |
@@ -515,31 +549,33 @@ Returns a 200 response on success
 | `saml`                    | [EndpointSAML](#endpointsaml-fields)                                   | saml module configuration or `null`                                                     |
 | `oidc`                    | [EndpointOIDC](#endpointoidc-fields)                                   | oidc module configuration or `null`                                                     |
 | `websocket_tcp_converter` | [EndpointWebsocketTCPConverter](#endpointwebsockettcpconverter-fields) | websocket to tcp adapter configuration or `null`                                        |
+| `user_agent_filter`       | [EndpointUserAgentFilter](#endpointuseragentfilter-fields)             |                                                                                         |
+| `traffic_policy`          | [EndpointTrafficPolicy](#endpointtrafficpolicy-fields)                 | the traffic policy associated with this edge or null                                    |
 
 #### EndpointBackend fields
 
-| &nbsp;    | &nbsp;             | &nbsp;                                                                                             |
+| Name      | Type               | Description                                                                                        |
 | --------- | ------------------ | -------------------------------------------------------------------------------------------------- |
 | `enabled` | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
 | `backend` | [Ref](#ref-fields) | backend to be used to back this endpoint                                                           |
 
 #### Ref fields
 
-| &nbsp; | &nbsp; | &nbsp;                        |
-| ------ | ------ | ----------------------------- |
-| `id`   | string | a resource identifier         |
-| `uri`  | string | a uri for locating a resource |
+| Name  | Type   | Description                   |
+| ----- | ------ | ----------------------------- |
+| `id`  | string | a resource identifier         |
+| `uri` | string | a uri for locating a resource |
 
 #### EndpointIPPolicy fields
 
-| &nbsp;        | &nbsp;             | &nbsp;                                                                                              |
+| Name          | Type               | Description                                                                                         |
 | ------------- | ------------------ | --------------------------------------------------------------------------------------------------- |
 | `enabled`     | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified  |
 | `ip_policies` | [Ref](#ref-fields) | list of all IP policies that will be used to check if a source IP is allowed access to the endpoint |
 
 #### EndpointCircuitBreaker fields
 
-| &nbsp;                       | &nbsp;  | &nbsp;                                                                                                       |
+| Name                         | Type    | Description                                                                                                  |
 | ---------------------------- | ------- | ------------------------------------------------------------------------------------------------------------ |
 | `enabled`                    | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified           |
 | `tripped_duration`           | uint32  | Integer number of seconds after which the circuit is tripped to wait before re-evaluating upstream health    |
@@ -550,13 +586,13 @@ Returns a 200 response on success
 
 #### EndpointCompression fields
 
-| &nbsp;    | &nbsp;  | &nbsp;                                                                                             |
+| Name      | Type    | Description                                                                                        |
 | --------- | ------- | -------------------------------------------------------------------------------------------------- |
 | `enabled` | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
 
 #### EndpointRequestHeaders fields
 
-| &nbsp;    | &nbsp;                    | &nbsp;                                                                                                                               |
+| Name      | Type                      | Description                                                                                                                          |
 | --------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | `enabled` | boolean                   | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                   |
 | `add`     | Map&lt;string, string&gt; | a map of header key to header value that will be injected into the HTTP Request before being sent to the upstream application server |
@@ -564,7 +600,7 @@ Returns a 200 response on success
 
 #### EndpointResponseHeaders fields
 
-| &nbsp;    | &nbsp;                    | &nbsp;                                                                                                       |
+| Name      | Type                      | Description                                                                                                  |
 | --------- | ------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | `enabled` | boolean                   | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified           |
 | `add`     | Map&lt;string, string&gt; | a map of header key to header value that will be injected into the HTTP Response returned to the HTTP client |
@@ -572,7 +608,7 @@ Returns a 200 response on success
 
 #### EndpointWebhookValidation fields
 
-| &nbsp;     | &nbsp;  | &nbsp;                                                                                                                                                                                                       |
+| Name       | Type    | Description                                                                                                                                                                                                  |
 | ---------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `enabled`  | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                                                           |
 | `provider` | string  | a string indicating which webhook provider will be sending webhooks to this endpoint. Value must be one of the supported providers defined at https://ngrok.com/docs/cloud-edge/modules/webhook-verification |
@@ -580,7 +616,7 @@ Returns a 200 response on success
 
 #### EndpointOAuth fields
 
-| &nbsp;                | &nbsp;                                                 | &nbsp;                                                                                                                                                                                                                                                                                                                                   |
+| Name                  | Type                                                   | Description                                                                                                                                                                                                                                                                                                                              |
 | --------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `enabled`             | boolean                                                | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                                                                                                                                                                                       |
 | `provider`            | [EndpointOAuthProvider](#endpointoauthprovider-fields) | an object which defines the identity provider to use for authentication and configuration for who may access the endpoint                                                                                                                                                                                                                |
@@ -592,7 +628,7 @@ Returns a 200 response on success
 
 #### EndpointOAuthProvider fields
 
-| &nbsp;      | &nbsp;                                                   | &nbsp;                                                     |
+| Name        | Type                                                     | Description                                                |
 | ----------- | -------------------------------------------------------- | ---------------------------------------------------------- |
 | `github`    | [EndpointOAuthGitHub](#endpointoauthgithub-fields)       | configuration for using github as the identity provider    |
 | `facebook`  | [EndpointOAuthFacebook](#endpointoauthfacebook-fields)   | configuration for using facebook as the identity provider  |
@@ -605,7 +641,7 @@ Returns a 200 response on success
 
 #### EndpointOAuthGitHub fields
 
-| &nbsp;            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                                         |
+| Name              | Type               | Description                                                                                                                                                                                                                                                                                                                    |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `client_id`       | string             | the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well. |
 | `client_secret`   | string             | the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.                                                                                                                                            |
@@ -617,7 +653,7 @@ Returns a 200 response on success
 
 #### EndpointOAuthFacebook fields
 
-| &nbsp;            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                                         |
+| Name              | Type               | Description                                                                                                                                                                                                                                                                                                                    |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `client_id`       | string             | the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well. |
 | `client_secret`   | string             | the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.                                                                                                                                            |
@@ -627,7 +663,7 @@ Returns a 200 response on success
 
 #### EndpointOAuthMicrosoft fields
 
-| &nbsp;            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                                         |
+| Name              | Type               | Description                                                                                                                                                                                                                                                                                                                    |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `client_id`       | string             | the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well. |
 | `client_secret`   | string             | the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.                                                                                                                                            |
@@ -637,7 +673,7 @@ Returns a 200 response on success
 
 #### EndpointOAuthGoogle fields
 
-| &nbsp;            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                                         |
+| Name              | Type               | Description                                                                                                                                                                                                                                                                                                                    |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `client_id`       | string             | the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well. |
 | `client_secret`   | string             | the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.                                                                                                                                            |
@@ -647,47 +683,47 @@ Returns a 200 response on success
 
 #### EndpointOAuthLinkedIn fields
 
-| &nbsp;            | &nbsp;             | &nbsp; |
-| ----------------- | ------------------ | ------ |
-| `client_id`       | string             |        |
-| `client_secret`   | string             |        |
-| `scopes`          | List&lt;string&gt; |        |
-| `email_addresses` | List&lt;string&gt; |        |
-| `email_domains`   | List&lt;string&gt; |        |
+| Name              | Type               | Description |
+| ----------------- | ------------------ | ----------- |
+| `client_id`       | string             |             |
+| `client_secret`   | string             |             |
+| `scopes`          | List&lt;string&gt; |             |
+| `email_addresses` | List&lt;string&gt; |             |
+| `email_domains`   | List&lt;string&gt; |             |
 
 #### EndpointOAuthGitLab fields
 
-| &nbsp;            | &nbsp;             | &nbsp; |
-| ----------------- | ------------------ | ------ |
-| `client_id`       | string             |        |
-| `client_secret`   | string             |        |
-| `scopes`          | List&lt;string&gt; |        |
-| `email_addresses` | List&lt;string&gt; |        |
-| `email_domains`   | List&lt;string&gt; |        |
+| Name              | Type               | Description |
+| ----------------- | ------------------ | ----------- |
+| `client_id`       | string             |             |
+| `client_secret`   | string             |             |
+| `scopes`          | List&lt;string&gt; |             |
+| `email_addresses` | List&lt;string&gt; |             |
+| `email_domains`   | List&lt;string&gt; |             |
 
 #### EndpointOAuthTwitch fields
 
-| &nbsp;            | &nbsp;             | &nbsp; |
-| ----------------- | ------------------ | ------ |
-| `client_id`       | string             |        |
-| `client_secret`   | string             |        |
-| `scopes`          | List&lt;string&gt; |        |
-| `email_addresses` | List&lt;string&gt; |        |
-| `email_domains`   | List&lt;string&gt; |        |
+| Name              | Type               | Description |
+| ----------------- | ------------------ | ----------- |
+| `client_id`       | string             |             |
+| `client_secret`   | string             |             |
+| `scopes`          | List&lt;string&gt; |             |
+| `email_addresses` | List&lt;string&gt; |             |
+| `email_domains`   | List&lt;string&gt; |             |
 
 #### EndpointOAuthAmazon fields
 
-| &nbsp;            | &nbsp;             | &nbsp; |
-| ----------------- | ------------------ | ------ |
-| `client_id`       | string             |        |
-| `client_secret`   | string             |        |
-| `scopes`          | List&lt;string&gt; |        |
-| `email_addresses` | List&lt;string&gt; |        |
-| `email_domains`   | List&lt;string&gt; |        |
+| Name              | Type               | Description |
+| ----------------- | ------------------ | ----------- |
+| `client_id`       | string             |             |
+| `client_secret`   | string             |             |
+| `scopes`          | List&lt;string&gt; |             |
+| `email_addresses` | List&lt;string&gt; |             |
+| `email_domains`   | List&lt;string&gt; |             |
 
 #### EndpointSAML fields
 
-| &nbsp;                            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                     |
+| Name                              | Type               | Description                                                                                                                                                                                                                                                                                                |
 | --------------------------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `enabled`                         | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                                                                                                                                                         |
 | `options_passthrough`             | boolean            | Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.                                                                                                                                                                                                              |
@@ -707,7 +743,7 @@ Returns a 200 response on success
 
 #### EndpointOIDC fields
 
-| &nbsp;                | &nbsp;             | &nbsp;                                                                                                                                                                |
+| Name                  | Type               | Description                                                                                                                                                           |
 | --------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `enabled`             | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                    |
 | `options_passthrough` | boolean            | Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.                                                                         |
@@ -721,9 +757,24 @@ Returns a 200 response on success
 
 #### EndpointWebsocketTCPConverter fields
 
-| &nbsp;    | &nbsp;  | &nbsp;                                                                                             |
+| Name      | Type    | Description                                                                                        |
 | --------- | ------- | -------------------------------------------------------------------------------------------------- |
 | `enabled` | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
+
+#### EndpointUserAgentFilter fields
+
+| Name      | Type               | Description |
+| --------- | ------------------ | ----------- |
+| `enabled` | boolean            |             |
+| `allow`   | List&lt;string&gt; |             |
+| `deny`    | List&lt;string&gt; |             |
+
+#### EndpointTrafficPolicy fields
+
+| Name      | Type    | Description                                                                                        |
+| --------- | ------- | -------------------------------------------------------------------------------------------------- |
+| `enabled` | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
+| `value`   | string  | the traffic policy that should be applied to the traffic on your endpoint.                         |
 
 ## Update HTTPS Edge Route
 
@@ -731,13 +782,13 @@ Updates an HTTPS Edge Route by ID. If a module is not specified in the update, i
 
 ### Request
 
-PATCH /edges/https/{edge_id}/routes/{id}
+PATCH /edges/https/\{edge_id\}/routes/\{id\}
 
 <EdgesHTTPSRoutesUpdateRequest />
 
 #### Parameters
 
-| &nbsp;                    | &nbsp;                                                                     | &nbsp;                                                                                  |
+| Name                      | Type                                                                       | Description                                                                             |
 | ------------------------- | -------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | `edge_id`                 | string                                                                     | unique identifier of this edge                                                          |
 | `id`                      | string                                                                     | unique identifier of this edge route                                                    |
@@ -756,24 +807,26 @@ PATCH /edges/https/{edge_id}/routes/{id}
 | `saml`                    | [EndpointSAMLMutate](#endpointsamlmutate-parameters)                       | saml module configuration or `null`                                                     |
 | `oidc`                    | [EndpointOIDC](#endpointoidc-parameters)                                   | oidc module configuration or `null`                                                     |
 | `websocket_tcp_converter` | [EndpointWebsocketTCPConverter](#endpointwebsockettcpconverter-parameters) | websocket to tcp adapter configuration or `null`                                        |
+| `user_agent_filter`       | [EndpointUserAgentFilter](#endpointuseragentfilter-parameters)             |                                                                                         |
+| `traffic_policy`          | [EndpointTrafficPolicy](#endpointtrafficpolicy-parameters)                 | the traffic policy associated with this edge or null                                    |
 
 #### EndpointBackendMutate parameters
 
-| &nbsp;       | &nbsp;  | &nbsp;                                                                                             |
+| Name         | Type    | Description                                                                                        |
 | ------------ | ------- | -------------------------------------------------------------------------------------------------- |
 | `enabled`    | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
 | `backend_id` | string  | backend to be used to back this endpoint                                                           |
 
 #### EndpointIPPolicyMutate parameters
 
-| &nbsp;          | &nbsp;             | &nbsp;                                                                                              |
+| Name            | Type               | Description                                                                                         |
 | --------------- | ------------------ | --------------------------------------------------------------------------------------------------- |
 | `enabled`       | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified  |
 | `ip_policy_ids` | List&lt;string&gt; | list of all IP policies that will be used to check if a source IP is allowed access to the endpoint |
 
 #### EndpointCircuitBreaker parameters
 
-| &nbsp;                       | &nbsp;  | &nbsp;                                                                                                       |
+| Name                         | Type    | Description                                                                                                  |
 | ---------------------------- | ------- | ------------------------------------------------------------------------------------------------------------ |
 | `enabled`                    | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified           |
 | `tripped_duration`           | uint32  | Integer number of seconds after which the circuit is tripped to wait before re-evaluating upstream health    |
@@ -784,13 +837,13 @@ PATCH /edges/https/{edge_id}/routes/{id}
 
 #### EndpointCompression parameters
 
-| &nbsp;    | &nbsp;  | &nbsp;                                                                                             |
+| Name      | Type    | Description                                                                                        |
 | --------- | ------- | -------------------------------------------------------------------------------------------------- |
 | `enabled` | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
 
 #### EndpointRequestHeaders parameters
 
-| &nbsp;    | &nbsp;                    | &nbsp;                                                                                                                               |
+| Name      | Type                      | Description                                                                                                                          |
 | --------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | `enabled` | boolean                   | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                   |
 | `add`     | Map&lt;string, string&gt; | a map of header key to header value that will be injected into the HTTP Request before being sent to the upstream application server |
@@ -798,7 +851,7 @@ PATCH /edges/https/{edge_id}/routes/{id}
 
 #### EndpointResponseHeaders parameters
 
-| &nbsp;    | &nbsp;                    | &nbsp;                                                                                                       |
+| Name      | Type                      | Description                                                                                                  |
 | --------- | ------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | `enabled` | boolean                   | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified           |
 | `add`     | Map&lt;string, string&gt; | a map of header key to header value that will be injected into the HTTP Response returned to the HTTP client |
@@ -806,7 +859,7 @@ PATCH /edges/https/{edge_id}/routes/{id}
 
 #### EndpointWebhookValidation parameters
 
-| &nbsp;     | &nbsp;  | &nbsp;                                                                                                                                                                                                       |
+| Name       | Type    | Description                                                                                                                                                                                                  |
 | ---------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `enabled`  | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                                                           |
 | `provider` | string  | a string indicating which webhook provider will be sending webhooks to this endpoint. Value must be one of the supported providers defined at https://ngrok.com/docs/cloud-edge/modules/webhook-verification |
@@ -814,7 +867,7 @@ PATCH /edges/https/{edge_id}/routes/{id}
 
 #### EndpointOAuth parameters
 
-| &nbsp;                | &nbsp;                                                     | &nbsp;                                                                                                                                                                                                                                                                                                                                   |
+| Name                  | Type                                                       | Description                                                                                                                                                                                                                                                                                                                              |
 | --------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `enabled`             | boolean                                                    | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                                                                                                                                                                                       |
 | `provider`            | [EndpointOAuthProvider](#endpointoauthprovider-parameters) | an object which defines the identity provider to use for authentication and configuration for who may access the endpoint                                                                                                                                                                                                                |
@@ -826,7 +879,7 @@ PATCH /edges/https/{edge_id}/routes/{id}
 
 #### EndpointOAuthProvider parameters
 
-| &nbsp;      | &nbsp;                                                       | &nbsp;                                                     |
+| Name        | Type                                                         | Description                                                |
 | ----------- | ------------------------------------------------------------ | ---------------------------------------------------------- |
 | `github`    | [EndpointOAuthGitHub](#endpointoauthgithub-parameters)       | configuration for using github as the identity provider    |
 | `facebook`  | [EndpointOAuthFacebook](#endpointoauthfacebook-parameters)   | configuration for using facebook as the identity provider  |
@@ -839,7 +892,7 @@ PATCH /edges/https/{edge_id}/routes/{id}
 
 #### EndpointOAuthGitHub parameters
 
-| &nbsp;            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                                         |
+| Name              | Type               | Description                                                                                                                                                                                                                                                                                                                    |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `client_id`       | string             | the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well. |
 | `client_secret`   | string             | the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.                                                                                                                                            |
@@ -851,7 +904,7 @@ PATCH /edges/https/{edge_id}/routes/{id}
 
 #### EndpointOAuthFacebook parameters
 
-| &nbsp;            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                                         |
+| Name              | Type               | Description                                                                                                                                                                                                                                                                                                                    |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `client_id`       | string             | the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well. |
 | `client_secret`   | string             | the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.                                                                                                                                            |
@@ -861,7 +914,7 @@ PATCH /edges/https/{edge_id}/routes/{id}
 
 #### EndpointOAuthMicrosoft parameters
 
-| &nbsp;            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                                         |
+| Name              | Type               | Description                                                                                                                                                                                                                                                                                                                    |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `client_id`       | string             | the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well. |
 | `client_secret`   | string             | the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.                                                                                                                                            |
@@ -871,7 +924,7 @@ PATCH /edges/https/{edge_id}/routes/{id}
 
 #### EndpointOAuthGoogle parameters
 
-| &nbsp;            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                                         |
+| Name              | Type               | Description                                                                                                                                                                                                                                                                                                                    |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `client_id`       | string             | the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well. |
 | `client_secret`   | string             | the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.                                                                                                                                            |
@@ -881,47 +934,47 @@ PATCH /edges/https/{edge_id}/routes/{id}
 
 #### EndpointOAuthLinkedIn parameters
 
-| &nbsp;            | &nbsp;             | &nbsp; |
-| ----------------- | ------------------ | ------ |
-| `client_id`       | string             |        |
-| `client_secret`   | string             |        |
-| `scopes`          | List&lt;string&gt; |        |
-| `email_addresses` | List&lt;string&gt; |        |
-| `email_domains`   | List&lt;string&gt; |        |
+| Name              | Type               | Description |
+| ----------------- | ------------------ | ----------- |
+| `client_id`       | string             |             |
+| `client_secret`   | string             |             |
+| `scopes`          | List&lt;string&gt; |             |
+| `email_addresses` | List&lt;string&gt; |             |
+| `email_domains`   | List&lt;string&gt; |             |
 
 #### EndpointOAuthGitLab parameters
 
-| &nbsp;            | &nbsp;             | &nbsp; |
-| ----------------- | ------------------ | ------ |
-| `client_id`       | string             |        |
-| `client_secret`   | string             |        |
-| `scopes`          | List&lt;string&gt; |        |
-| `email_addresses` | List&lt;string&gt; |        |
-| `email_domains`   | List&lt;string&gt; |        |
+| Name              | Type               | Description |
+| ----------------- | ------------------ | ----------- |
+| `client_id`       | string             |             |
+| `client_secret`   | string             |             |
+| `scopes`          | List&lt;string&gt; |             |
+| `email_addresses` | List&lt;string&gt; |             |
+| `email_domains`   | List&lt;string&gt; |             |
 
 #### EndpointOAuthTwitch parameters
 
-| &nbsp;            | &nbsp;             | &nbsp; |
-| ----------------- | ------------------ | ------ |
-| `client_id`       | string             |        |
-| `client_secret`   | string             |        |
-| `scopes`          | List&lt;string&gt; |        |
-| `email_addresses` | List&lt;string&gt; |        |
-| `email_domains`   | List&lt;string&gt; |        |
+| Name              | Type               | Description |
+| ----------------- | ------------------ | ----------- |
+| `client_id`       | string             |             |
+| `client_secret`   | string             |             |
+| `scopes`          | List&lt;string&gt; |             |
+| `email_addresses` | List&lt;string&gt; |             |
+| `email_domains`   | List&lt;string&gt; |             |
 
 #### EndpointOAuthAmazon parameters
 
-| &nbsp;            | &nbsp;             | &nbsp; |
-| ----------------- | ------------------ | ------ |
-| `client_id`       | string             |        |
-| `client_secret`   | string             |        |
-| `scopes`          | List&lt;string&gt; |        |
-| `email_addresses` | List&lt;string&gt; |        |
-| `email_domains`   | List&lt;string&gt; |        |
+| Name              | Type               | Description |
+| ----------------- | ------------------ | ----------- |
+| `client_id`       | string             |             |
+| `client_secret`   | string             |             |
+| `scopes`          | List&lt;string&gt; |             |
+| `email_addresses` | List&lt;string&gt; |             |
+| `email_domains`   | List&lt;string&gt; |             |
 
 #### EndpointSAMLMutate parameters
 
-| &nbsp;                | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                     |
+| Name                  | Type               | Description                                                                                                                                                                                                                                                                                                |
 | --------------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `enabled`             | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                                                                                                                                                         |
 | `options_passthrough` | boolean            | Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.                                                                                                                                                                                                              |
@@ -936,7 +989,7 @@ PATCH /edges/https/{edge_id}/routes/{id}
 
 #### EndpointOIDC parameters
 
-| &nbsp;                | &nbsp;             | &nbsp;                                                                                                                                                                |
+| Name                  | Type               | Description                                                                                                                                                           |
 | --------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `enabled`             | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                    |
 | `options_passthrough` | boolean            | Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.                                                                         |
@@ -950,9 +1003,24 @@ PATCH /edges/https/{edge_id}/routes/{id}
 
 #### EndpointWebsocketTCPConverter parameters
 
-| &nbsp;    | &nbsp;  | &nbsp;                                                                                             |
+| Name      | Type    | Description                                                                                        |
 | --------- | ------- | -------------------------------------------------------------------------------------------------- |
 | `enabled` | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
+
+#### EndpointUserAgentFilter parameters
+
+| Name      | Type               | Description |
+| --------- | ------------------ | ----------- |
+| `enabled` | boolean            |             |
+| `allow`   | List&lt;string&gt; |             |
+| `deny`    | List&lt;string&gt; |             |
+
+#### EndpointTrafficPolicy parameters
+
+| Name      | Type    | Description                                                                                        |
+| --------- | ------- | -------------------------------------------------------------------------------------------------- |
+| `enabled` | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
+| `value`   | string  | the traffic policy that should be applied to the traffic on your endpoint.                         |
 
 ### Response
 
@@ -962,7 +1030,7 @@ Returns a 200 response on success
 
 #### Fields
 
-| &nbsp;                    | &nbsp;                                                                 | &nbsp;                                                                                  |
+| Name                      | Type                                                                   | Description                                                                             |
 | ------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | `edge_id`                 | string                                                                 | unique identifier of this edge                                                          |
 | `id`                      | string                                                                 | unique identifier of this edge route                                                    |
@@ -983,31 +1051,33 @@ Returns a 200 response on success
 | `saml`                    | [EndpointSAML](#endpointsaml-fields)                                   | saml module configuration or `null`                                                     |
 | `oidc`                    | [EndpointOIDC](#endpointoidc-fields)                                   | oidc module configuration or `null`                                                     |
 | `websocket_tcp_converter` | [EndpointWebsocketTCPConverter](#endpointwebsockettcpconverter-fields) | websocket to tcp adapter configuration or `null`                                        |
+| `user_agent_filter`       | [EndpointUserAgentFilter](#endpointuseragentfilter-fields)             |                                                                                         |
+| `traffic_policy`          | [EndpointTrafficPolicy](#endpointtrafficpolicy-fields)                 | the traffic policy associated with this edge or null                                    |
 
 #### EndpointBackend fields
 
-| &nbsp;    | &nbsp;             | &nbsp;                                                                                             |
+| Name      | Type               | Description                                                                                        |
 | --------- | ------------------ | -------------------------------------------------------------------------------------------------- |
 | `enabled` | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
 | `backend` | [Ref](#ref-fields) | backend to be used to back this endpoint                                                           |
 
 #### Ref fields
 
-| &nbsp; | &nbsp; | &nbsp;                        |
-| ------ | ------ | ----------------------------- |
-| `id`   | string | a resource identifier         |
-| `uri`  | string | a uri for locating a resource |
+| Name  | Type   | Description                   |
+| ----- | ------ | ----------------------------- |
+| `id`  | string | a resource identifier         |
+| `uri` | string | a uri for locating a resource |
 
 #### EndpointIPPolicy fields
 
-| &nbsp;        | &nbsp;             | &nbsp;                                                                                              |
+| Name          | Type               | Description                                                                                         |
 | ------------- | ------------------ | --------------------------------------------------------------------------------------------------- |
 | `enabled`     | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified  |
 | `ip_policies` | [Ref](#ref-fields) | list of all IP policies that will be used to check if a source IP is allowed access to the endpoint |
 
 #### EndpointCircuitBreaker fields
 
-| &nbsp;                       | &nbsp;  | &nbsp;                                                                                                       |
+| Name                         | Type    | Description                                                                                                  |
 | ---------------------------- | ------- | ------------------------------------------------------------------------------------------------------------ |
 | `enabled`                    | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified           |
 | `tripped_duration`           | uint32  | Integer number of seconds after which the circuit is tripped to wait before re-evaluating upstream health    |
@@ -1018,13 +1088,13 @@ Returns a 200 response on success
 
 #### EndpointCompression fields
 
-| &nbsp;    | &nbsp;  | &nbsp;                                                                                             |
+| Name      | Type    | Description                                                                                        |
 | --------- | ------- | -------------------------------------------------------------------------------------------------- |
 | `enabled` | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
 
 #### EndpointRequestHeaders fields
 
-| &nbsp;    | &nbsp;                    | &nbsp;                                                                                                                               |
+| Name      | Type                      | Description                                                                                                                          |
 | --------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | `enabled` | boolean                   | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                   |
 | `add`     | Map&lt;string, string&gt; | a map of header key to header value that will be injected into the HTTP Request before being sent to the upstream application server |
@@ -1032,7 +1102,7 @@ Returns a 200 response on success
 
 #### EndpointResponseHeaders fields
 
-| &nbsp;    | &nbsp;                    | &nbsp;                                                                                                       |
+| Name      | Type                      | Description                                                                                                  |
 | --------- | ------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | `enabled` | boolean                   | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified           |
 | `add`     | Map&lt;string, string&gt; | a map of header key to header value that will be injected into the HTTP Response returned to the HTTP client |
@@ -1040,7 +1110,7 @@ Returns a 200 response on success
 
 #### EndpointWebhookValidation fields
 
-| &nbsp;     | &nbsp;  | &nbsp;                                                                                                                                                                                                       |
+| Name       | Type    | Description                                                                                                                                                                                                  |
 | ---------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `enabled`  | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                                                           |
 | `provider` | string  | a string indicating which webhook provider will be sending webhooks to this endpoint. Value must be one of the supported providers defined at https://ngrok.com/docs/cloud-edge/modules/webhook-verification |
@@ -1048,7 +1118,7 @@ Returns a 200 response on success
 
 #### EndpointOAuth fields
 
-| &nbsp;                | &nbsp;                                                 | &nbsp;                                                                                                                                                                                                                                                                                                                                   |
+| Name                  | Type                                                   | Description                                                                                                                                                                                                                                                                                                                              |
 | --------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `enabled`             | boolean                                                | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                                                                                                                                                                                       |
 | `provider`            | [EndpointOAuthProvider](#endpointoauthprovider-fields) | an object which defines the identity provider to use for authentication and configuration for who may access the endpoint                                                                                                                                                                                                                |
@@ -1060,7 +1130,7 @@ Returns a 200 response on success
 
 #### EndpointOAuthProvider fields
 
-| &nbsp;      | &nbsp;                                                   | &nbsp;                                                     |
+| Name        | Type                                                     | Description                                                |
 | ----------- | -------------------------------------------------------- | ---------------------------------------------------------- |
 | `github`    | [EndpointOAuthGitHub](#endpointoauthgithub-fields)       | configuration for using github as the identity provider    |
 | `facebook`  | [EndpointOAuthFacebook](#endpointoauthfacebook-fields)   | configuration for using facebook as the identity provider  |
@@ -1073,7 +1143,7 @@ Returns a 200 response on success
 
 #### EndpointOAuthGitHub fields
 
-| &nbsp;            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                                         |
+| Name              | Type               | Description                                                                                                                                                                                                                                                                                                                    |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `client_id`       | string             | the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well. |
 | `client_secret`   | string             | the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.                                                                                                                                            |
@@ -1085,7 +1155,7 @@ Returns a 200 response on success
 
 #### EndpointOAuthFacebook fields
 
-| &nbsp;            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                                         |
+| Name              | Type               | Description                                                                                                                                                                                                                                                                                                                    |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `client_id`       | string             | the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well. |
 | `client_secret`   | string             | the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.                                                                                                                                            |
@@ -1095,7 +1165,7 @@ Returns a 200 response on success
 
 #### EndpointOAuthMicrosoft fields
 
-| &nbsp;            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                                         |
+| Name              | Type               | Description                                                                                                                                                                                                                                                                                                                    |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `client_id`       | string             | the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well. |
 | `client_secret`   | string             | the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.                                                                                                                                            |
@@ -1105,7 +1175,7 @@ Returns a 200 response on success
 
 #### EndpointOAuthGoogle fields
 
-| &nbsp;            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                                         |
+| Name              | Type               | Description                                                                                                                                                                                                                                                                                                                    |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `client_id`       | string             | the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well. |
 | `client_secret`   | string             | the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.                                                                                                                                            |
@@ -1115,47 +1185,47 @@ Returns a 200 response on success
 
 #### EndpointOAuthLinkedIn fields
 
-| &nbsp;            | &nbsp;             | &nbsp; |
-| ----------------- | ------------------ | ------ |
-| `client_id`       | string             |        |
-| `client_secret`   | string             |        |
-| `scopes`          | List&lt;string&gt; |        |
-| `email_addresses` | List&lt;string&gt; |        |
-| `email_domains`   | List&lt;string&gt; |        |
+| Name              | Type               | Description |
+| ----------------- | ------------------ | ----------- |
+| `client_id`       | string             |             |
+| `client_secret`   | string             |             |
+| `scopes`          | List&lt;string&gt; |             |
+| `email_addresses` | List&lt;string&gt; |             |
+| `email_domains`   | List&lt;string&gt; |             |
 
 #### EndpointOAuthGitLab fields
 
-| &nbsp;            | &nbsp;             | &nbsp; |
-| ----------------- | ------------------ | ------ |
-| `client_id`       | string             |        |
-| `client_secret`   | string             |        |
-| `scopes`          | List&lt;string&gt; |        |
-| `email_addresses` | List&lt;string&gt; |        |
-| `email_domains`   | List&lt;string&gt; |        |
+| Name              | Type               | Description |
+| ----------------- | ------------------ | ----------- |
+| `client_id`       | string             |             |
+| `client_secret`   | string             |             |
+| `scopes`          | List&lt;string&gt; |             |
+| `email_addresses` | List&lt;string&gt; |             |
+| `email_domains`   | List&lt;string&gt; |             |
 
 #### EndpointOAuthTwitch fields
 
-| &nbsp;            | &nbsp;             | &nbsp; |
-| ----------------- | ------------------ | ------ |
-| `client_id`       | string             |        |
-| `client_secret`   | string             |        |
-| `scopes`          | List&lt;string&gt; |        |
-| `email_addresses` | List&lt;string&gt; |        |
-| `email_domains`   | List&lt;string&gt; |        |
+| Name              | Type               | Description |
+| ----------------- | ------------------ | ----------- |
+| `client_id`       | string             |             |
+| `client_secret`   | string             |             |
+| `scopes`          | List&lt;string&gt; |             |
+| `email_addresses` | List&lt;string&gt; |             |
+| `email_domains`   | List&lt;string&gt; |             |
 
 #### EndpointOAuthAmazon fields
 
-| &nbsp;            | &nbsp;             | &nbsp; |
-| ----------------- | ------------------ | ------ |
-| `client_id`       | string             |        |
-| `client_secret`   | string             |        |
-| `scopes`          | List&lt;string&gt; |        |
-| `email_addresses` | List&lt;string&gt; |        |
-| `email_domains`   | List&lt;string&gt; |        |
+| Name              | Type               | Description |
+| ----------------- | ------------------ | ----------- |
+| `client_id`       | string             |             |
+| `client_secret`   | string             |             |
+| `scopes`          | List&lt;string&gt; |             |
+| `email_addresses` | List&lt;string&gt; |             |
+| `email_domains`   | List&lt;string&gt; |             |
 
 #### EndpointSAML fields
 
-| &nbsp;                            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                     |
+| Name                              | Type               | Description                                                                                                                                                                                                                                                                                                |
 | --------------------------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `enabled`                         | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                                                                                                                                                         |
 | `options_passthrough`             | boolean            | Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.                                                                                                                                                                                                              |
@@ -1175,7 +1245,7 @@ Returns a 200 response on success
 
 #### EndpointOIDC fields
 
-| &nbsp;                | &nbsp;             | &nbsp;                                                                                                                                                                |
+| Name                  | Type               | Description                                                                                                                                                           |
 | --------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `enabled`             | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                    |
 | `options_passthrough` | boolean            | Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.                                                                         |
@@ -1189,9 +1259,24 @@ Returns a 200 response on success
 
 #### EndpointWebsocketTCPConverter fields
 
-| &nbsp;    | &nbsp;  | &nbsp;                                                                                             |
+| Name      | Type    | Description                                                                                        |
 | --------- | ------- | -------------------------------------------------------------------------------------------------- |
 | `enabled` | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
+
+#### EndpointUserAgentFilter fields
+
+| Name      | Type               | Description |
+| --------- | ------------------ | ----------- |
+| `enabled` | boolean            |             |
+| `allow`   | List&lt;string&gt; |             |
+| `deny`    | List&lt;string&gt; |             |
+
+#### EndpointTrafficPolicy fields
+
+| Name      | Type    | Description                                                                                        |
+| --------- | ------- | -------------------------------------------------------------------------------------------------- |
+| `enabled` | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
+| `value`   | string  | the traffic policy that should be applied to the traffic on your endpoint.                         |
 
 ## Delete HTTPS Edge Route
 
@@ -1199,7 +1284,7 @@ Delete an HTTPS Edge Route by ID
 
 ### Request
 
-DELETE /edges/https/{edge_id}/routes/{id}
+DELETE /edges/https/\{edge_id\}/routes/\{id\}
 
 <EdgesHTTPSRoutesDeleteRequest />
 

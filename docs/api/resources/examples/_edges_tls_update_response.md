@@ -4,15 +4,17 @@
 
 ```json
 {
-	"id": "edgtls_2XH3t6dOwxX6BHivpIl5Tvmqukq",
-	"description": "acme tls edge",
-	"metadata": "{\"environment\": \"production\"}",
-	"created_at": "2023-10-25T22:19:49Z",
-	"uri": "https://api.ngrok.com/edges/tls/edgtls_2XH3t6dOwxX6BHivpIl5Tvmqukq",
-	"hostports": ["example.com:443"],
 	"backend": null,
+	"created_at": "2024-10-17T20:26:50Z",
+	"description": "acme tls edge",
+	"hostports": ["example.com:443"],
+	"id": "edgtls_2na2LVAJxQfmzPGt0w7CtnuZYjC",
 	"ip_restriction": null,
+	"metadata": "{\"environment\": \"production\"}",
 	"mutual_tls": null,
-	"tls_termination": null
+	"policy": null,
+	"tls_termination": null,
+	"traffic_policy": null,
+	"uri": "https://api.ngrok.com/edges/tls/edgtls_2na2LVAJxQfmzPGt0w7CtnuZYjC"
 }
 ```

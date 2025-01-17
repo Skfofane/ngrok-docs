@@ -1,14 +1,14 @@
-import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Tabs from "@theme/Tabs";
 
-import KubernetesExample from "/examples/k8s/http-user-agent-filter.mdx";
 import AgentCliExample from "/examples/agent-cli/http-user-agent-filter.mdx";
 import AgentConfigExample from "/examples/agent-config/http-user-agent-filter.mdx";
-import SshExample from "/examples/ssh/http-user-agent-filter.mdx";
 import GoSdkExample from "/examples/go-sdk/http-user-agent-filter.mdx";
 import JavascriptSdkExample from "/examples/javascript-sdk/http-user-agent-filter.mdx";
+import KubernetesExample from "/examples/k8s/http-user-agent-filter.mdx";
 import PythonSdkExample from "/examples/python-sdk/http-user-agent-filter.mdx";
 import RustSdkExample from "/examples/rust-sdk/http-user-agent-filter.mdx";
+import SshExample from "/examples/ssh/http-user-agent-filter.mdx";
 
 # User Agent Filter
 
@@ -120,7 +120,7 @@ Run ngrok with User Agent Filter's `allow` and `deny` set to the following:
 
 ```bash
 ngrok http 80 \
-  --domain your-domain.ngrok.app \
+  --url your-domain.ngrok.app \
   --ua-filter-allow="(GoingMerry/(\d)+.(\d)+)","(GomuGomu/(\d)+.(\d)+)" \
   --ua-filter-deny="(Xebec/(\d)+.(\d)+)"
 ```

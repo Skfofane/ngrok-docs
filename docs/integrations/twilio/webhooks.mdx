@@ -49,7 +49,7 @@ Once your app is running successfully on localhost, let's get it on the internet
 
 1. If you're not an ngrok user yet, just [sign up to ngrok for free](https://ngrok.com/signup).
 
-2. [Download the ngrok agent](https://ngrok.com/download).
+2. [Download the ngrok agent](https://download.ngrok.com).
 
 3. Go to the [ngrok dashboard](https://dashboard.ngrok.com) and copy your Authtoken. <br />
    **Tip:** The ngrok agent uses the authtoken to log into your account when you start a tunnel.
@@ -91,10 +91,11 @@ The webhook verification module allows ngrok to assert requests to your endpoint
 
 1. Login to [Twilio Console](https://console.twilio.com/) and copy your Auth Token value.<br />
    **Note:** ngrok Webhook Verification ensures traffic from your Twilio account is the **only traffic allowed** to make calls to your app. Because Twilio signs all Webhooks using the Primary Auth Token, ngrok can verifies the signature of every request and only authorizing requests originating from your Twilio account.
-2. Restart ngrok by running the command, replacing {your auth token} with your Twilio Auth Token:
-   ```bash
+2. Restart ngrok by running the command, replacing \{your auth token\} with your Twilio Auth Token:
+
+```bash
    ngrok http 3000 --verify-webhook twilio --verify-webhook-secret {your auth token}
-   ```
+```
 
 ### Inspecting requests
 

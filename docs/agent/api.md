@@ -31,7 +31,9 @@ The ngrok agent API is exposed as part of ngrok's local web inspection interface
 
 ### Access the root API resource of a running ngrok agent
 
-    curl http://localhost:4040/api/
+```sh
+curl http://localhost:4040/api/
+```
 
 ## Supported Content Types
 
@@ -64,45 +66,47 @@ GET/api/tunnels
 
 ### Example Response
 
-    {
-      "tunnels": [
-          {
-              "name": "command_line",
-              "uri": "/api/tunnels/command_line",
-              "public_url": "https://d95211d2.ngrok.io",
-              "proto": "https",
-              "config": {
-                  "addr": "localhost:80",
-                  "inspect": true,
-              },
-              "metrics": {
-                  "conns": {
-                      "count": 0,
-                      "gauge": 0,
-                      "rate1": 0,
-                      "rate5": 0,
-                      "rate15": 0,
-                      "p50": 0,
-                      "p90": 0,
-                      "p95": 0,
-                      "p99": 0
-                  },
-                  "http": {
-                      "count": 0,
-                      "rate1": 0,
-                      "rate5": 0,
-                      "rate15": 0,
-                      "p50": 0,
-                      "p90": 0,
-                      "p95": 0,
-                      "p99": 0
-                  }
-              }
-          },
-          ...
-      ],
-      "uri": "/api/tunnels"
-    }
+```
+{
+    "tunnels": [
+        {
+            "name": "command_line",
+            "uri": "/api/tunnels/command_line",
+            "public_url": "https://d95211d2.ngrok.io",
+            "proto": "https",
+            "config": {
+                "addr": "localhost:80",
+                "inspect": true,
+            },
+            "metrics": {
+                "conns": {
+                    "count": 0,
+                    "gauge": 0,
+                    "rate1": 0,
+                    "rate5": 0,
+                    "rate15": 0,
+                    "p50": 0,
+                    "p90": 0,
+                    "p95": 0,
+                    "p99": 0
+                },
+                "http": {
+                    "count": 0,
+                    "rate1": 0,
+                    "rate5": 0,
+                    "rate15": 0,
+                    "p50": 0,
+                    "p90": 0,
+                    "p95": 0,
+                    "p99": 0
+                }
+            }
+        },
+        ...
+    ],
+    "uri": "/api/tunnels"
+}
+```
 
 ## Start tunnel
 
@@ -114,15 +118,17 @@ POST/api/tunnels
 
 ### Parameters
 
-Parameter names and behaviors are identical to those those defined in the configuration file. Use the [tunnel definitions](/agent/config#tunnel-configurations) section as a reference for configuration parameters and their behaviors.
+Parameter names and behaviors are identical to those those defined in the configuration file. Use the [tunnel definitions](/agent/config/v2/#tunnel-configurations) section as a reference for configuration parameters and their behaviors.
 
 ### Example request body
 
-    {
-      "addr": "22",
-      "proto": "tcp",
-      "name": "ssh"
-    }
+```
+{
+    "addr": "22",
+    "proto": "tcp",
+    "name": "ssh"
+}
+```
 
 ### Response
 
@@ -130,39 +136,41 @@ Parameter names and behaviors are identical to those those defined in the config
 
 ### Example Response
 
-    {
-      "name": "",
-      "uri": "/api/tunnels/",
-      "public_url": "tcp://0.tcp.ngrok.io:53476",
-      "proto": "tcp",
-      "config": {
-          "addr": "localhost:22",
-          "inspect": false,
-      },
-      "metrics": {
-          "conns": {
-              "count": 0,
-              "gauge": 0,
-              "rate1": 0,
-              "rate5": 0,
-              "rate15": 0,
-              "p50": 0,
-              "p90": 0,
-              "p95": 0,
-              "p99": 0
-          },
-          "http": {
-              "count": 0,
-              "rate1": 0,
-              "rate5": 0,
-              "rate15": 0,
-              "p50": 0,
-              "p90": 0,
-              "p95": 0,
-              "p99": 0
-          }
-      }
+```
+{
+    "name": "",
+    "uri": "/api/tunnels/",
+    "public_url": "tcp://0.tcp.ngrok.io:53476",
+    "proto": "tcp",
+    "config": {
+        "addr": "localhost:22",
+        "inspect": false,
+    },
+    "metrics": {
+        "conns": {
+            "count": 0,
+            "gauge": 0,
+            "rate1": 0,
+            "rate5": 0,
+            "rate15": 0,
+            "p50": 0,
+            "p90": 0,
+            "p95": 0,
+            "p99": 0
+        },
+        "http": {
+            "count": 0,
+            "rate1": 0,
+            "rate5": 0,
+            "rate15": 0,
+            "p50": 0,
+            "p90": 0,
+            "p95": 0,
+            "p99": 0
+        }
     }
+}
+```
 
 ## Tunnel detail
 
@@ -176,39 +184,41 @@ GET/api/tunnels/:name
 
 ### Example Response
 
-    {
-      "name": "command_line",
-      "uri": "/api/tunnels/command_line",
-      "public_url": "https://ac294125.ngrok.io",
-      "proto": "https",
-      "config": {
-          "addr": "localhost:80",
-          "inspect": true,
-      },
-      "metrics": {
-          "conns": {
-              "count": 0,
-              "gauge": 0,
-              "rate1": 0,
-              "rate5": 0,
-              "rate15": 0,
-              "p50": 0,
-              "p90": 0,
-              "p95": 0,
-              "p99": 0
-          },
-          "http": {
-              "count": 0,
-              "rate1": 0,
-              "rate5": 0,
-              "rate15": 0,
-              "p50": 0,
-              "p90": 0,
-              "p95": 0,
-              "p99": 0
-          }
-      }
+```
+{
+    "name": "command_line",
+    "uri": "/api/tunnels/command_line",
+    "public_url": "https://ac294125.ngrok.io",
+    "proto": "https",
+    "config": {
+        "addr": "localhost:80",
+        "inspect": true,
+    },
+    "metrics": {
+        "conns": {
+            "count": 0,
+            "gauge": 0,
+            "rate1": 0,
+            "rate5": 0,
+            "rate15": 0,
+            "p50": 0,
+            "p90": 0,
+            "p95": 0,
+            "p99": 0
+        },
+        "http": {
+            "count": 0,
+            "rate1": 0,
+            "rate5": 0,
+            "rate15": 0,
+            "p50": 0,
+            "p90": 0,
+            "p95": 0,
+            "p99": 0
+        }
     }
+}
+```
 
 ## Stop tunnel
 
@@ -239,7 +249,9 @@ GET/api/requests/http
 
 ### Example Request
 
-    curl http://localhost:4040/api/requests/http?limit=50
+```sh
+curl http://localhost:4040/api/requests/http?limit=50
+```
 
 ### Response
 
@@ -249,57 +261,59 @@ GET/api/requests/http
 
 ### Example Response
 
-    {
-      "uri": "/api/requests/http",
-      "requests": [
-          {
-              "uri": "/api/requests/http/548fb5c700000002",
-              "id": "548fb5c700000002",
-              "tunnel_name": "command_line (http)",
-              "remote_addr": "192.168.100.25",
-              "start": "2014-12-15T20:32:07-08:00",
-              "duration": 3893202,
-              "request": {
-                  "method": "GET",
-                  "proto": "HTTP/1.1",
-                  "headers": {
-                      "Accept": [
-                          "*/*"
-                      ],
-                      "Accept-Encoding": [
-                          "gzip, deflate, sdch"
-                      ],
-                      "Accept-Language": [
-                          "en-US,en;q=0.8"
-                      ],
-                      "Connection": [
-                          "keep-alive"
-                      ],
-                      "User-Agent": [
-                          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36"
-                      ],
-                      "X-Original-Host": [
-                          "c159663f.ngrok.io"
-                      ]
-                  },
-                  "uri": "/favicon.ico",
-                  "raw": "<BASE64 ENCODED BYTES>"
-              },
-              "response": {
-                  "status": "502 Bad Gateway",
-                  "status_code": 502,
-                  "proto": "HTTP/1.1",
-                  "headers": {
-                      "Content-Length": [
-                          "1716"
-                      ]
-                  },
-                  "raw": "<BASE64 ENCODED BYTES>",
-              }
-          },
-          ...
-      ]
-    }
+```
+{
+    "uri": "/api/requests/http",
+    "requests": [
+        {
+            "uri": "/api/requests/http/548fb5c700000002",
+            "id": "548fb5c700000002",
+            "tunnel_name": "command_line (http)",
+            "remote_addr": "192.168.100.25",
+            "start": "2014-12-15T20:32:07-08:00",
+            "duration": 3893202,
+            "request": {
+                "method": "GET",
+                "proto": "HTTP/1.1",
+                "headers": {
+                    "Accept": [
+                        "*/*"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate, sdch"
+                    ],
+                    "Accept-Language": [
+                        "en-US,en;q=0.8"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "User-Agent": [
+                        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36"
+                    ],
+                    "X-Original-Host": [
+                        "c159663f.ngrok.io"
+                    ]
+                },
+                "uri": "/favicon.ico",
+                "raw": "<BASE64 ENCODED BYTES>"
+            },
+            "response": {
+                "status": "502 Bad Gateway",
+                "status_code": 502,
+                "proto": "HTTP/1.1",
+                "headers": {
+                    "Content-Length": [
+                        "1716"
+                    ]
+                },
+                "raw": "<BASE64 ENCODED BYTES>",
+            }
+        },
+        ...
+    ]
+}
+```
 
 ## Replay Captured Request
 
@@ -318,7 +332,9 @@ POST/api/requests/http
 
 ### Example Request
 
-    curl -H "Content-Type: application/json" -d '{"id": "548fb5c700000002"}' http://localhost:4040/api/requests/http
+```sh
+curl -H "Content-Type: application/json" -d '{"id": "548fb5c700000002"}' http://localhost:4040/api/requests/http
+```
 
 ### Response
 
@@ -348,48 +364,86 @@ GET/api/requests/http/:request_id
 
 ### Example Response
 
-    {
-      "uri": "/api/requests/http/548fb5c700000002",
-      "id": "548fb5c700000002",
-      "tunnel_name": "command_line (http)",
-      "remote_addr": "192.168.100.25",
-      "start": "2014-12-15T20:32:07-08:00",
-      "duration": 3893202,
-      "request": {
-          "method": "GET",
-          "proto": "HTTP/1.1",
-          "headers": {
-              "Accept": [
-                  "*/*"
-              ],
-              "Accept-Encoding": [
-                  "gzip, deflate, sdch"
-              ],
-              "Accept-Language": [
-                  "en-US,en;q=0.8"
-              ],
-              "Connection": [
-                  "keep-alive"
-              ],
-              "User-Agent": [
-                  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36"
-              ],
-              "X-Original-Host": [
-                  "c159663f.ngrok.io"
-              ]
-          },
-          "uri": "/favicon.ico",
-          "raw": "<BASE64 ENCODED BYTES>"
-      },
-      "response": {
-          "status": "502 Bad Gateway",
-          "status_code": 502,
-          "proto": "HTTP/1.1",
-          "headers": {
-              "Content-Length": [
-                  "1716"
-              ]
-          },
-          "raw": "<BASE64 ENCODED BYTES>",
-      }
+```
+{
+    "uri": "/api/requests/http/548fb5c700000002",
+    "id": "548fb5c700000002",
+    "tunnel_name": "command_line (http)",
+    "remote_addr": "192.168.100.25",
+    "start": "2014-12-15T20:32:07-08:00",
+    "duration": 3893202,
+    "request": {
+        "method": "GET",
+        "proto": "HTTP/1.1",
+        "headers": {
+            "Accept": [
+                "*/*"
+            ],
+            "Accept-Encoding": [
+                "gzip, deflate, sdch"
+            ],
+            "Accept-Language": [
+                "en-US,en;q=0.8"
+            ],
+            "Connection": [
+                "keep-alive"
+            ],
+            "User-Agent": [
+                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36"
+            ],
+            "X-Original-Host": [
+                "c159663f.ngrok.io"
+            ]
+        },
+        "uri": "/favicon.ico",
+        "raw": "<BASE64 ENCODED BYTES>"
+    },
+    "response": {
+        "status": "502 Bad Gateway",
+        "status_code": 502,
+        "proto": "HTTP/1.1",
+        "headers": {
+            "Content-Length": [
+                "1716"
+            ]
+        },
+        "raw": "<BASE64 ENCODED BYTES>",
     }
+}
+```
+
+## Agent Status
+
+Get status and metrics about the running agent
+
+### Request
+
+GET /api/status
+
+### Example Request
+
+```sh
+curl http://localhost:4040/api/status
+```
+
+### Response
+
+200 status code with a json response describing the status of the agent
+
+### Example Response
+
+```
+{
+    "status": "online",
+    "agent_version": "3.9.0",
+    "session": {
+        "legs": [
+            {
+                "region": "au",
+                "latency": "87ms"
+            }
+        ]
+    },
+    "uri": "/api/status"
+}
+```

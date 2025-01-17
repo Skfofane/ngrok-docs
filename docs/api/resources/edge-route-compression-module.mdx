@@ -1,9 +1,9 @@
-import EdgeRouteCompressionModuleReplaceRequest from "./examples/_edge_route_compression_module_replace_request.md";
-import EdgeRouteCompressionModuleReplaceResponse from "./examples/_edge_route_compression_module_replace_response.md";
-import EdgeRouteCompressionModuleGetRequest from "./examples/_edge_route_compression_module_get_request.md";
-import EdgeRouteCompressionModuleGetResponse from "./examples/_edge_route_compression_module_get_response.md";
 import EdgeRouteCompressionModuleDeleteRequest from "./examples/_edge_route_compression_module_delete_request.md";
 import EdgeRouteCompressionModuleDeleteResponse from "./examples/_edge_route_compression_module_delete_response.md";
+import EdgeRouteCompressionModuleGetRequest from "./examples/_edge_route_compression_module_get_request.md";
+import EdgeRouteCompressionModuleGetResponse from "./examples/_edge_route_compression_module_get_response.md";
+import EdgeRouteCompressionModuleReplaceRequest from "./examples/_edge_route_compression_module_replace_request.md";
+import EdgeRouteCompressionModuleReplaceResponse from "./examples/_edge_route_compression_module_replace_response.md";
 
 # Edge Route Compression Module
 
@@ -11,13 +11,13 @@ import EdgeRouteCompressionModuleDeleteResponse from "./examples/_edge_route_com
 
 ### Request
 
-PUT /edges/https/{edge_id}/routes/{id}/compression
+PUT /edges/https/\{edge_id\}/routes/\{id\}/compression
 
 <EdgeRouteCompressionModuleReplaceRequest />
 
 #### Parameters
 
-| &nbsp;    | &nbsp;  | &nbsp;                                                                                             |
+| Name      | Type    | Description                                                                                        |
 | --------- | ------- | -------------------------------------------------------------------------------------------------- |
 | `enabled` | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
 
@@ -29,7 +29,7 @@ Returns a 200 response on success
 
 #### Fields
 
-| &nbsp;    | &nbsp;  | &nbsp;                                                                                             |
+| Name      | Type    | Description                                                                                        |
 | --------- | ------- | -------------------------------------------------------------------------------------------------- |
 | `enabled` | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
 
@@ -37,7 +37,7 @@ Returns a 200 response on success
 
 ### Request
 
-GET /edges/https/{edge_id}/routes/{id}/compression
+GET /edges/https/\{edge_id\}/routes/\{id\}/compression
 
 <EdgeRouteCompressionModuleGetRequest />
 
@@ -49,7 +49,7 @@ Returns a 200 response on success
 
 #### Fields
 
-| &nbsp;    | &nbsp;  | &nbsp;                                                                                             |
+| Name      | Type    | Description                                                                                        |
 | --------- | ------- | -------------------------------------------------------------------------------------------------- |
 | `enabled` | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
 
@@ -57,7 +57,7 @@ Returns a 200 response on success
 
 ### Request
 
-DELETE /edges/https/{edge_id}/routes/{id}/compression
+DELETE /edges/https/\{edge_id\}/routes/\{id\}/compression
 
 <EdgeRouteCompressionModuleDeleteRequest />
 

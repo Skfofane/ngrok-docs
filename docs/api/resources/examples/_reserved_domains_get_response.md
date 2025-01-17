@@ -4,28 +4,29 @@
 
 ```json
 {
-	"id": "rd_2XH3pmjhqgS14aXEX95DmtgmvIf",
-	"uri": "https://api.ngrok.com/reserved_domains/rd_2XH3pmjhqgS14aXEX95DmtgmvIf",
-	"created_at": "2023-10-25T22:19:22Z",
-	"description": "point-of-sale new york #302",
-	"metadata": "{env: \"staging\", \"connector_id\":\"64698fcc-5f5c-4b63-910e-8669d04bd943\"}",
-	"domain": "myapp.mydomain.com",
-	"region": "",
-	"cname_target": "2udamkamcl8pjmrff.3vqvon9ntpngqygbv.local-ngrok-cname.com",
-	"http_endpoint_configuration": {
-		"id": "ec_2XH3ppTpuhPJTbRfywYD4cUzf9C",
-		"uri": "https://api.ngrok.com/endpoint_configurations/ec_2XH3ppTpuhPJTbRfywYD4cUzf9C"
-	},
-	"https_endpoint_configuration": {
-		"id": "ec_2XH3pvLsNVVb68GZTATa22birov",
-		"uri": "https://api.ngrok.com/endpoint_configurations/ec_2XH3pvLsNVVb68GZTATa22birov"
-	},
+	"acme_challenge_cname_target": null,
 	"certificate": null,
 	"certificate_management_policy": {
 		"authority": "letsencrypt",
 		"private_key_type": "ecdsa"
 	},
 	"certificate_management_status": null,
-	"acme_challenge_cname_target": null
+	"cname_target": "2udamkamcl8pjmrff.4eh2sv3tfb4hzp5pf.local-ngrok-cname.com",
+	"created_at": "2024-10-17T20:26:22Z",
+	"description": "point-of-sale new york #302",
+	"domain": "myapp.mydomain.com",
+	"error_redirect_url": null,
+	"http_endpoint_configuration": {
+		"id": "ec_2na2I4p5TSFAKRi6WVzeE6cnVI4",
+		"uri": "https://api.ngrok.com/endpoint_configurations/ec_2na2I4p5TSFAKRi6WVzeE6cnVI4"
+	},
+	"https_endpoint_configuration": {
+		"id": "ec_2na2IBmMm0eBKkeuz1FFYY0Zkm4",
+		"uri": "https://api.ngrok.com/endpoint_configurations/ec_2na2IBmMm0eBKkeuz1FFYY0Zkm4"
+	},
+	"id": "rd_2na2I5HYAllbxqZq9huoWFIdte3",
+	"metadata": "{env: \"staging\", \"connector_id\":\"64698fcc-5f5c-4b63-910e-8669d04bd943\"}",
+	"region": "",
+	"uri": "https://api.ngrok.com/reserved_domains/rd_2na2I5HYAllbxqZq9huoWFIdte3"
 }
 ```

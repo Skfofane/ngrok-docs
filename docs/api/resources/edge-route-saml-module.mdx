@@ -1,9 +1,9 @@
-import EdgeRouteSAMLModuleReplaceRequest from "./examples/_edge_route_saml_module_replace_request.md";
-import EdgeRouteSAMLModuleReplaceResponse from "./examples/_edge_route_saml_module_replace_response.md";
-import EdgeRouteSAMLModuleGetRequest from "./examples/_edge_route_saml_module_get_request.md";
-import EdgeRouteSAMLModuleGetResponse from "./examples/_edge_route_saml_module_get_response.md";
 import EdgeRouteSAMLModuleDeleteRequest from "./examples/_edge_route_saml_module_delete_request.md";
 import EdgeRouteSAMLModuleDeleteResponse from "./examples/_edge_route_saml_module_delete_response.md";
+import EdgeRouteSAMLModuleGetRequest from "./examples/_edge_route_saml_module_get_request.md";
+import EdgeRouteSAMLModuleGetResponse from "./examples/_edge_route_saml_module_get_response.md";
+import EdgeRouteSAMLModuleReplaceRequest from "./examples/_edge_route_saml_module_replace_request.md";
+import EdgeRouteSAMLModuleReplaceResponse from "./examples/_edge_route_saml_module_replace_response.md";
 
 # Edge Route SAML Module
 
@@ -11,13 +11,13 @@ import EdgeRouteSAMLModuleDeleteResponse from "./examples/_edge_route_saml_modul
 
 ### Request
 
-PUT /edges/https/{edge_id}/routes/{id}/saml
+PUT /edges/https/\{edge_id\}/routes/\{id\}/saml
 
 <EdgeRouteSAMLModuleReplaceRequest />
 
 #### Parameters
 
-| &nbsp;                | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                     |
+| Name                  | Type               | Description                                                                                                                                                                                                                                                                                                |
 | --------------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `enabled`             | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                                                                                                                                                         |
 | `options_passthrough` | boolean            | Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.                                                                                                                                                                                                              |
@@ -38,7 +38,7 @@ Returns a 200 response on success
 
 #### Fields
 
-| &nbsp;                            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                     |
+| Name                              | Type               | Description                                                                                                                                                                                                                                                                                                |
 | --------------------------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `enabled`                         | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                                                                                                                                                         |
 | `options_passthrough`             | boolean            | Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.                                                                                                                                                                                                              |
@@ -60,7 +60,7 @@ Returns a 200 response on success
 
 ### Request
 
-GET /edges/https/{edge_id}/routes/{id}/saml
+GET /edges/https/\{edge_id\}/routes/\{id\}/saml
 
 <EdgeRouteSAMLModuleGetRequest />
 
@@ -72,7 +72,7 @@ Returns a 200 response on success
 
 #### Fields
 
-| &nbsp;                            | &nbsp;             | &nbsp;                                                                                                                                                                                                                                                                                                     |
+| Name                              | Type               | Description                                                                                                                                                                                                                                                                                                |
 | --------------------------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `enabled`                         | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified                                                                                                                                                                                                         |
 | `options_passthrough`             | boolean            | Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.                                                                                                                                                                                                              |
@@ -94,7 +94,7 @@ Returns a 200 response on success
 
 ### Request
 
-DELETE /edges/https/{edge_id}/routes/{id}/saml
+DELETE /edges/https/\{edge_id\}/routes/\{id\}/saml
 
 <EdgeRouteSAMLModuleDeleteRequest />
 

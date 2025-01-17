@@ -1,9 +1,9 @@
-import EdgeRouteWebsocketTCPConverterModuleReplaceRequest from "./examples/_edge_route_websocket_tcp_converter_module_replace_request.md";
-import EdgeRouteWebsocketTCPConverterModuleReplaceResponse from "./examples/_edge_route_websocket_tcp_converter_module_replace_response.md";
-import EdgeRouteWebsocketTCPConverterModuleGetRequest from "./examples/_edge_route_websocket_tcp_converter_module_get_request.md";
-import EdgeRouteWebsocketTCPConverterModuleGetResponse from "./examples/_edge_route_websocket_tcp_converter_module_get_response.md";
 import EdgeRouteWebsocketTCPConverterModuleDeleteRequest from "./examples/_edge_route_websocket_tcp_converter_module_delete_request.md";
 import EdgeRouteWebsocketTCPConverterModuleDeleteResponse from "./examples/_edge_route_websocket_tcp_converter_module_delete_response.md";
+import EdgeRouteWebsocketTCPConverterModuleGetRequest from "./examples/_edge_route_websocket_tcp_converter_module_get_request.md";
+import EdgeRouteWebsocketTCPConverterModuleGetResponse from "./examples/_edge_route_websocket_tcp_converter_module_get_response.md";
+import EdgeRouteWebsocketTCPConverterModuleReplaceRequest from "./examples/_edge_route_websocket_tcp_converter_module_replace_request.md";
+import EdgeRouteWebsocketTCPConverterModuleReplaceResponse from "./examples/_edge_route_websocket_tcp_converter_module_replace_response.md";
 
 # Edge Route Websocket Tcp Converter Module
 
@@ -11,13 +11,13 @@ import EdgeRouteWebsocketTCPConverterModuleDeleteResponse from "./examples/_edge
 
 ### Request
 
-PUT /edges/https/{edge_id}/routes/{id}/websocket_tcp_converter
+PUT /edges/https/\{edge_id\}/routes/\{id\}/websocket_tcp_converter
 
 <EdgeRouteWebsocketTCPConverterModuleReplaceRequest />
 
 #### Parameters
 
-| &nbsp;    | &nbsp;  | &nbsp;                                                                                             |
+| Name      | Type    | Description                                                                                        |
 | --------- | ------- | -------------------------------------------------------------------------------------------------- |
 | `enabled` | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
 
@@ -29,7 +29,7 @@ Returns a 200 response on success
 
 #### Fields
 
-| &nbsp;    | &nbsp;  | &nbsp;                                                                                             |
+| Name      | Type    | Description                                                                                        |
 | --------- | ------- | -------------------------------------------------------------------------------------------------- |
 | `enabled` | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
 
@@ -37,7 +37,7 @@ Returns a 200 response on success
 
 ### Request
 
-GET /edges/https/{edge_id}/routes/{id}/websocket_tcp_converter
+GET /edges/https/\{edge_id\}/routes/\{id\}/websocket_tcp_converter
 
 <EdgeRouteWebsocketTCPConverterModuleGetRequest />
 
@@ -49,7 +49,7 @@ Returns a 200 response on success
 
 #### Fields
 
-| &nbsp;    | &nbsp;  | &nbsp;                                                                                             |
+| Name      | Type    | Description                                                                                        |
 | --------- | ------- | -------------------------------------------------------------------------------------------------- |
 | `enabled` | boolean | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified |
 
@@ -57,7 +57,7 @@ Returns a 200 response on success
 
 ### Request
 
-DELETE /edges/https/{edge_id}/routes/{id}/websocket_tcp_converter
+DELETE /edges/https/\{edge_id\}/routes/\{id\}/websocket_tcp_converter
 
 <EdgeRouteWebsocketTCPConverterModuleDeleteRequest />
 

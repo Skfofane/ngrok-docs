@@ -6,29 +6,30 @@
 {
 	"event_destinations": [
 		{
-			"id": "ed_2XH3sSLidfVwpldWeHzgg5Rdqcx",
-			"metadata": "{\"environment\":\"dev\"}",
-			"created_at": "2023-10-25T22:19:44Z",
+			"created_at": "2024-10-17T20:26:45Z",
 			"description": "kinesis dev stream",
 			"format": "json",
+			"id": "ed_2na2KzFcMkxftv7Y5ghqMtq5uHR",
+			"metadata": "{\"environment\":\"dev\"}",
 			"target": {
+				"azure_logs_ingestion": null,
+				"cloudwatch_logs": null,
+				"datadog": null,
 				"firehose": null,
 				"kinesis": {
 					"auth": {
+						"creds": null,
 						"role": {
 							"role_arn": "arn:aws:iam::123456789012:role/example"
-						},
-						"creds": null
+						}
 					},
 					"stream_arn": "arn:ngrok-local:kinesis:us-east-2:123456789012:stream/mystream2"
-				},
-				"cloudwatch_logs": null,
-				"datadog": null
+				}
 			},
-			"uri": "https://api.ngrok.com/event_destinations/ed_2XH3sSLidfVwpldWeHzgg5Rdqcx"
+			"uri": "https://api.ngrok.com/event_destinations/ed_2na2KzFcMkxftv7Y5ghqMtq5uHR"
 		}
 	],
-	"uri": "https://api.ngrok.com/event_destinations",
-	"next_page_uri": null
+	"next_page_uri": null,
+	"uri": "https://api.ngrok.com/event_destinations"
 }
 ```

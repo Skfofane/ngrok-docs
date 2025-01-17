@@ -96,7 +96,7 @@ ngrok can leverage Frontegg SSO in two ways:
    - FRONTEGG_CLIENT_ID: The client id you copied from Frontegg.
    - FRONTEGG_CLIENT_SECRET: The API key you copied from Frontegg.
 
-   Alternatively, add the `--domain YOUR_DOMAIN` argument to get your custom URL, replacing `YOUR_DOMAIN` with your URL of preference.
+   Alternatively, add the `--url YOUR_DOMAIN` argument to get your custom URL, replacing `YOUR_DOMAIN` with your URL of preference.
 
 1. Copy the URL available next to **Forwarding** (for example, `https://frontegg-sso-test.ngrok.app`).
 
@@ -108,7 +108,7 @@ To configure an edge with Frontegg:
 
 1. Access the [ngrok Dashboard](https://dashboard.ngrok.com/) and sign in using your ngrok account.
 
-1. On the left menu, click **Cloud Edge** and then click **Edges**.
+1. On the left menu, click **Universal Gateway** and then click **Edges**.
 
 1. If you don't have an edge already set to add Frontegg SSO, create a test edge:
 

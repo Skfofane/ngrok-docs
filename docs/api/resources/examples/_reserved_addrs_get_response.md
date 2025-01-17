@@ -4,16 +4,16 @@
 
 ```json
 {
-	"id": "ra_2XH3WC5ZlhxcYcxwpRqBLQIuU6J",
-	"uri": "https://api.ngrok.com/reserved_addrs/ra_2XH3WC5ZlhxcYcxwpRqBLQIuU6J",
-	"created_at": "2023-10-25T22:19:23Z",
-	"description": "SSH for device #001",
-	"metadata": "{\"proto\": \"ssh\"}",
 	"addr": "1.tcp.ngrok.io:20000",
-	"region": "us",
+	"created_at": "2024-10-17T20:26:23Z",
+	"description": "SSH for device #001",
 	"endpoint_configuration": {
-		"id": "ec_2XH3pvDYyImAXNCmd8SvDKWWQcK",
-		"uri": "https://api.ngrok.com/endpoint_configurations/ec_2XH3pvDYyImAXNCmd8SvDKWWQcK"
-	}
+		"id": "ec_2na2I6l6lUR1UsnJ6mrUHYuxnwI",
+		"uri": "https://api.ngrok.com/endpoint_configurations/ec_2na2I6l6lUR1UsnJ6mrUHYuxnwI"
+	},
+	"id": "ra_2na2IChMACZBnz7nK30tfVUepJp",
+	"metadata": "{\"proto\": \"ssh\"}",
+	"region": "us",
+	"uri": "https://api.ngrok.com/reserved_addrs/ra_2na2IChMACZBnz7nK30tfVUepJp"
 }
 ```

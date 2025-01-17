@@ -9,3 +9,5 @@
 | backend_id    | string             | backend to be used to back this endpoint                                                            |
 | enabled       | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified  |
 | ip_policy_ids | List&lt;string&gt; | list of all IP policies that will be used to check if a source IP is allowed access to the endpoint |
+| enabled       | boolean            | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified  |
+| value         | string             | the traffic policy that should be applied to the traffic on your endpoint.                          |

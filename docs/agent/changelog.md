@@ -6,6 +6,143 @@ title: Changelog
 
 ## v3
 
+### ngrok Agent 3.18.0 - \[2024-12-19\]
+
+- Add tls termination to v3 agent configs.
+
+### ngrok Agent 3.18.4 - \[2024-11-11\]
+
+- Fixed a bug causing the `--url` flag require an explicit scheme.
+
+### ngrok Agent 3.18.3 - \[2024-11-07\]
+
+- Fixed agent diagnose return codes.
+
+### ngrok Agent 3.18.2 - \[2024-10-31\]
+
+- Fixed ngrok diagnose --region all report.
+- Fixed scheme proto defaulting.
+- Added 128 character limit to usernames for agent basic auth.
+
+### ngrok Agent 3.18.1 - \[2024-10-24\]
+
+- Adds binary execution path to the host system metrics collected.
+- Fixed a bug where 4 character time zones were not handled properly in the console UI.
+
+### ngrok Agent 3.18.0 - \[2024-10-17\]
+
+- Added `--name` field for endpoints and tunnels when created from the agent config or CLI.
+
+### ngrok Agent 3.17.0 - \[2024-10-10\]
+
+- Added endpoint create/update/delete subcommands to the ngrok api command.
+- Added support for policy phases like `on_tcp_connect`, `on_http_request` and `on_http_response`.
+- Fixed a bug where we were incorrectly passing TLS as the endpoint proto rather than HTTP(S).
+
+### ngrok Agent 3.16.1 - \[2024-10-03\]
+
+- Added windows arm64 agent binary.
+
+### ngrok Agent 3.16.0 - \[2024-09-09\]
+
+- Releasing the features originally released by 3.15.0
+  - Added `--url` agent CLI flag for creation of HTTP(S), TLS, and TCP protocol endpoints.
+  - Deprecated `--domain`, `--scheme`, and `--remote-addr` agent CLI flags, which have been replaced by `--url`.
+  - Added `--metadata` and `--description` agent CLI flags when using `--url`.
+  - Added `endpoints:` as a new field used for [endpoint creation](/docs/agent/config/v3/).
+  - A new `agent:` field has been added to the agent configuration format for V3.
+    - v3 supports _both_ tunnels and endpoints. Tunnels are now considered deprecated when using config v3.
+    - Some agent configuration fields have been renamed in v3.
+    - v2 is still supported, but does not support the new `endpoints:` , or `agent:` fields.
+  - Added support for [endpoint fields](/docs/api/resources/endpoints/#list-endpoints) in ngrok's `api`.
+- Update `config` commands to support new configuration version 3, including `upgrade`, `add-authtoken`, and `add-api-key`
+
+### ngrok Agent 3.15.1 - \[2024-08-29\]
+
+- Restores the functionality and compatibility for version 3.14.0 due to bugs in the previous release. An updated version with the changes from 3.15.0 will be released early next week.
+
+### \[UNSTABLE\] ngrok Agent 3.15.0 - \[2024-08-29\]
+
+- Added `--url` agent CLI flag for creation of HTTP(S), TLS, and TCP protocol endpoints.
+- Deprecated `--domain`, `--scheme`, and `--remote-addr` agent CLI flags, which have been replaced by `--url`.
+- Added `--metadata` and `--description` agent CLI flags when using `--url`.
+- Added `endpoints:` as a new field used for [endpoint creation](/docs/agent/config/v3/).
+- A new `agent:` field has been added to the agent configuration format for V3.
+  - v3 supports _both_ tunnels and endpoints. Tunnels are now considered deprecated when using config v3.
+  - Some agent configuration fields have been renamed in v3.
+  - v2 is still supported, but does not support the new `endpoints:` , or `agent:` fields.
+- Added support for [endpoint fields](/docs/api/resources/endpoints/#list-endpoints) in ngrok's `api`.
+
+### ngrok Agent 3.14.1 - \[2024-08-22\]
+
+- Resolved an issue with mTLS detection.
+
+### ngrok Agent 3.14.0 - \[2024-08-01\]
+
+- Added support for `traffic_policy` field in agent config for Traffic Policy configuration.
+- Deprecated `policy`
+- Added `EndpointTrafficPolicy` module to Edge API.
+
+### ngrok Agent 3.13.0 - \[2024-07-15\]
+
+- In some cases, adds additional headers on error responses to ngrok that can be used to customize the content.
+
+### ngrok Agent 3.12.1 - \[2024-07-11\]
+
+- Fixed a bug in `ngrok diagnose` that would cause a panic if a server IP and the agent had TLS connectivity issues.
+- Added `--traffic-policy-file` flag that accepts Traffic Policy configuration for HTTP, TCP, or TLS traffic.
+- Deprecated `--policy-file` flag
+
+### ngrok Agent 3.12.0 - \[2024-06-27\]
+
+- Errors now have links to ngrok error page.
+
+### ngrok Agent 3.11.0 - \[2024-06-13\]
+
+- `ngrok http` now has timestamps for incoming requests.
+
+### ngrok Agent 3.10.1 - \[2024-06-06\]
+
+- Requests to TLS endpoints using `proto: tls` and `terminate_at: agent` succeed after the agent session goes through a reconnection.
+
+### ngrok Agent 3.10.0 - \[2024-05-23\]
+
+- **ACTION MAY BE REQUIRED**: The domain used for Certificate Revocation List (CRL) checks is now `crl.ngrok-agent.com` to align it with the domain used for session connections. This may require changes to your firewall or proxy settings to allow this outbound connection on port 80, or setting `crl_noverify: true` in the agent config file.
+- Added CLI API support for [Bot Users](/docs/iam/bot-users/).
+
+### ngrok Agent 3.9.0 - \[2024-04-24\]
+
+- Added a `/api/status` endpoint to the local agent API that returns the agent's current status
+- The agent will check the Certificate Revocation List (CRL) on Session initiation. If a custom agent ingress is being used that has an invalid CRL in the chain, the `crl_noverify: true` option can be used to override this check, if desired
+- Certificate Revocation List (CRL) checking for certain Let's Encrypt certificate chains has been fixed
+
+### ngrok Agent 3.8.0 - \[2024-03-14\]
+
+- Added `json` support to Traffic Policy configuration
+- Moved to ngrok-go v1.9.1
+
+### ngrok Agent 3.7.0 - \[2024-03-07\]
+
+- Fixed an issue where `ngrok diagnose --region all` would return an error for `eu-lon-1`
+- Fixed a typo in default usage output
+- Moved to `ngrok-go` v1.9.0
+
+### ngrok Agent 3.6.0 - \[2024-02-06\]
+
+- Added `--policy-file` flag that accepts Traffic Policy configuration for HTTP, TCP, or TLS traffic.
+- Added support for `policy` field in agent config for Traffic Policy configuration.
+- Added concise help text when `ngrok` is run without any args
+- Removed support for Windows 7 and Windows 8 (support for Windows 7 and 8 was dropped in [Go 1.21](https://tip.golang.org/doc/go1.21#windows))
+
+### ngrok Agent 3.5.0 - \[2023-12-01\]
+
+- The `--region` flag has been deprecated, ngrok automatically chooses the region with lowest latency
+- The upstream tls configs have been renamed, with backwards compatibility:
+  - `--verify-upstream-tls` is now `--upstream-tls-verify`
+  - `--upstream-ca-path` is now `--upstream-tls-verify-cas`
+- An option for `--app-protocol` of the upstream, which can be set to `http2`, has been added
+- The `StopTunnel` message is now handled by the agent
+
 ### ngrok Agent 3.4.0 - \[2023-11-03\]
 
 - Added support for upstream TLS verification when forwarding to `https://` or `tls://` addresses.
@@ -37,7 +174,7 @@ title: Changelog
 
 ### ngrok Agent 3.3.0 - \[2023-05-09\]
 
-- Added new default tunnel ingress names: the agent now connects to [`connect.ngrok-agent.com`](/guides/security-dev-productivity/#6-track-and-block-unauthorized-tunnel-activity) when starting a session
+- Added new default tunnel ingress names: the agent now connects to [`connect.ngrok-agent.com`](/guides/other-guides/security-dev-productivity/security-dev-productivity.md#6-track-and-block-unauthorized-tunnel-activity) when starting a session
 - Improved `ngrok diagnose` output to check that the DNS entry for `localhost` resolves
 - Added the command `ngrok config add-server-addr` for configuring custom agent ingresses
 - Re-wrote the tunnel and session backend to use the `ngrok-go` library
@@ -61,7 +198,7 @@ title: Changelog
 - Updated `--config` option to be accepted in any position with cli command.
 - Fixed `ngrok config add-authtoken <AUTHTOKEN>` to also save the default version if it does not exist in the config file.
 - Fixed rare race condition where agent would crash unexpectedly.
-- Added DNS rebinding protection which includes [`web_allow_hosts`](/agent/config#web_allow_hosts) configuration.
+- Added DNS rebinding protection which includes [`web_allow_hosts`](/agent/config/v3/#web_allow_hosts) configuration.
 
 ### ngrok Agent 3.1.0 - \[2022-09-14\]
 
@@ -106,7 +243,7 @@ title: Changelog
 
 ### ngrok Agent 3.0.0 - \[2022-03-28\]
 
-For more information about upgrading from previous versions of the agent to v3.0, see our [upgrade guide](/guides/upgrade-v2-v3).
+For more information about upgrading from previous versions of the agent to v3.0, see our [upgrade guide](/guides/other-guides/upgrade-v2-v3.mdx).
 
 - Fixed an issue where an agent would not reconnect after removing a reserved domain from your account.
 - Added `ngrok completion` to enable autocomplete for the cli.
@@ -148,10 +285,12 @@ This change was made to help protect against maliciously crafted web pages that 
 
 Behavior changes for `http` and `tls` tunnels defined in the configuration file or started via the API that do not have a `subdomain` or `hostname` property.
 
-    tunnels:
-      webapp:
-        proto: http
-        addr: 80
+```yaml
+tunnels:
+  webapp:
+    proto: http
+    addr: 80
+```
 
 Given this example tunnel configuration, behavior will change in the following ways.
 
@@ -167,8 +306,10 @@ Starts a tunnel with a random subdomain, for example a URL like `http://d95211d2
 
 Add a `domain` property with the same name as the tunnel:
 
-    tunnels:
-      webapp:
-        proto: http
-        addr: 80
-        domain: webapp.ngrok.io
+```yaml
+tunnels:
+  webapp:
+    proto: http
+    addr: 80
+    domain: webapp.ngrok.io
+```

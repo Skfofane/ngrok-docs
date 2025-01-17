@@ -1,5 +1,9 @@
 import ReservedDomainsCreateRequest from "./examples/_reserved_domains_create_request.md";
 import ReservedDomainsCreateResponse from "./examples/_reserved_domains_create_response.md";
+import ReservedDomainsDeleteCertificateManagementPolicyRequest from "./examples/_reserved_domains_delete_certificate_management_policy_request.md";
+import ReservedDomainsDeleteCertificateManagementPolicyResponse from "./examples/_reserved_domains_delete_certificate_management_policy_response.md";
+import ReservedDomainsDeleteCertificateRequest from "./examples/_reserved_domains_delete_certificate_request.md";
+import ReservedDomainsDeleteCertificateResponse from "./examples/_reserved_domains_delete_certificate_response.md";
 import ReservedDomainsDeleteRequest from "./examples/_reserved_domains_delete_request.md";
 import ReservedDomainsDeleteResponse from "./examples/_reserved_domains_delete_response.md";
 import ReservedDomainsGetRequest from "./examples/_reserved_domains_get_request.md";
@@ -8,10 +12,6 @@ import ReservedDomainsListRequest from "./examples/_reserved_domains_list_reques
 import ReservedDomainsListResponse from "./examples/_reserved_domains_list_response.md";
 import ReservedDomainsUpdateRequest from "./examples/_reserved_domains_update_request.md";
 import ReservedDomainsUpdateResponse from "./examples/_reserved_domains_update_response.md";
-import ReservedDomainsDeleteCertificateManagementPolicyRequest from "./examples/_reserved_domains_delete_certificate_management_policy_request.md";
-import ReservedDomainsDeleteCertificateManagementPolicyResponse from "./examples/_reserved_domains_delete_certificate_management_policy_response.md";
-import ReservedDomainsDeleteCertificateRequest from "./examples/_reserved_domains_delete_certificate_request.md";
-import ReservedDomainsDeleteCertificateResponse from "./examples/_reserved_domains_delete_certificate_response.md";
 
 # Reserved Domains
 
@@ -27,7 +27,7 @@ POST /reserved_domains
 
 #### Parameters
 
-| &nbsp;                          | &nbsp;                                                           | &nbsp;                                                                                                                                                                                                                                                 |
+| Name                            | Type                                                             | Description                                                                                                                                                                                                                                            |
 | ------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `domain`                        | string                                                           | hostname of the reserved domain                                                                                                                                                                                                                        |
 | `region`                        | string                                                           | deprecated: With the launch of the ngrok Global Network domains traffic is now handled globally. This field applied only to endpoints. Note that agents may still connect to specific regions. Optional, null by default. (au, eu, ap, us, jp, in, sa) |
@@ -38,10 +38,10 @@ POST /reserved_domains
 
 #### ReservedDomainCertPolicy parameters
 
-| &nbsp;             | &nbsp; | &nbsp;                                                                                                |
-| ------------------ | ------ | ----------------------------------------------------------------------------------------------------- |
-| `authority`        | string | certificate authority to request certificates from. The only supported value is letsencrypt.          |
-| `private_key_type` | string | type of private key to use when requesting certificates. Defaults to rsa, can be either rsa or ecdsa. |
+| Name               | Type   | Description                                                                                             |
+| ------------------ | ------ | ------------------------------------------------------------------------------------------------------- |
+| `authority`        | string | certificate authority to request certificates from. The only supported value is letsencrypt.            |
+| `private_key_type` | string | type of private key to use when requesting certificates. Defaults to ecdsa, can be either rsa or ecdsa. |
 
 ### Response
 
@@ -51,7 +51,7 @@ Returns a 201 response on success
 
 #### Fields
 
-| &nbsp;                          | &nbsp;                                                       | &nbsp;                                                                                                                                                                                                                                                   |
+| Name                            | Type                                                         | Description                                                                                                                                                                                                                                              |
 | ------------------------------- | ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                            | string                                                       | unique reserved domain resource identifier                                                                                                                                                                                                               |
 | `uri`                           | string                                                       | URI of the reserved domain API resource                                                                                                                                                                                                                  |
@@ -68,28 +68,28 @@ Returns a 201 response on success
 
 #### Ref fields
 
-| &nbsp; | &nbsp; | &nbsp;                        |
-| ------ | ------ | ----------------------------- |
-| `id`   | string | a resource identifier         |
-| `uri`  | string | a uri for locating a resource |
+| Name  | Type   | Description                   |
+| ----- | ------ | ----------------------------- |
+| `id`  | string | a resource identifier         |
+| `uri` | string | a uri for locating a resource |
 
 #### ReservedDomainCertPolicy fields
 
-| &nbsp;             | &nbsp; | &nbsp;                                                                                                |
-| ------------------ | ------ | ----------------------------------------------------------------------------------------------------- |
-| `authority`        | string | certificate authority to request certificates from. The only supported value is letsencrypt.          |
-| `private_key_type` | string | type of private key to use when requesting certificates. Defaults to rsa, can be either rsa or ecdsa. |
+| Name               | Type   | Description                                                                                             |
+| ------------------ | ------ | ------------------------------------------------------------------------------------------------------- |
+| `authority`        | string | certificate authority to request certificates from. The only supported value is letsencrypt.            |
+| `private_key_type` | string | type of private key to use when requesting certificates. Defaults to ecdsa, can be either rsa or ecdsa. |
 
 #### ReservedDomainCertStatus fields
 
-| &nbsp;             | &nbsp;                                                 | &nbsp;                                                                                                     |
+| Name               | Type                                                   | Description                                                                                                |
 | ------------------ | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
 | `renews_at`        | string                                                 | timestamp when the next renewal will be requested, RFC 3339 format                                         |
 | `provisioning_job` | [ReservedDomainCertJob](#reserveddomaincertjob-fields) | status of the certificate provisioning job, or null if the certificiate isn't being provisioned or renewed |
 
 #### ReservedDomainCertJob fields
 
-| &nbsp;       | &nbsp; | &nbsp;                                                                                                                                                                           |
+| Name         | Type   | Description                                                                                                                                                                      |
 | ------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `error_code` | string | if present, an error code indicating why provisioning is failing. It may be either a temporary condition (INTERNAL_ERROR), or a permanent one the user must correct (DNS_ERROR). |
 | `msg`        | string | a message describing the current status or error                                                                                                                                 |
@@ -102,7 +102,7 @@ Delete a reserved domain.
 
 ### Request
 
-DELETE /reserved_domains/{id}
+DELETE /reserved_domains/\{id\}
 
 <ReservedDomainsDeleteRequest />
 
@@ -116,7 +116,7 @@ Get the details of a reserved domain.
 
 ### Request
 
-GET /reserved_domains/{id}
+GET /reserved_domains/\{id\}
 
 <ReservedDomainsGetRequest />
 
@@ -128,7 +128,7 @@ Returns a 200 response on success
 
 #### Fields
 
-| &nbsp;                          | &nbsp;                                                       | &nbsp;                                                                                                                                                                                                                                                   |
+| Name                            | Type                                                         | Description                                                                                                                                                                                                                                              |
 | ------------------------------- | ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                            | string                                                       | unique reserved domain resource identifier                                                                                                                                                                                                               |
 | `uri`                           | string                                                       | URI of the reserved domain API resource                                                                                                                                                                                                                  |
@@ -145,28 +145,28 @@ Returns a 200 response on success
 
 #### Ref fields
 
-| &nbsp; | &nbsp; | &nbsp;                        |
-| ------ | ------ | ----------------------------- |
-| `id`   | string | a resource identifier         |
-| `uri`  | string | a uri for locating a resource |
+| Name  | Type   | Description                   |
+| ----- | ------ | ----------------------------- |
+| `id`  | string | a resource identifier         |
+| `uri` | string | a uri for locating a resource |
 
 #### ReservedDomainCertPolicy fields
 
-| &nbsp;             | &nbsp; | &nbsp;                                                                                                |
-| ------------------ | ------ | ----------------------------------------------------------------------------------------------------- |
-| `authority`        | string | certificate authority to request certificates from. The only supported value is letsencrypt.          |
-| `private_key_type` | string | type of private key to use when requesting certificates. Defaults to rsa, can be either rsa or ecdsa. |
+| Name               | Type   | Description                                                                                             |
+| ------------------ | ------ | ------------------------------------------------------------------------------------------------------- |
+| `authority`        | string | certificate authority to request certificates from. The only supported value is letsencrypt.            |
+| `private_key_type` | string | type of private key to use when requesting certificates. Defaults to ecdsa, can be either rsa or ecdsa. |
 
 #### ReservedDomainCertStatus fields
 
-| &nbsp;             | &nbsp;                                                 | &nbsp;                                                                                                     |
+| Name               | Type                                                   | Description                                                                                                |
 | ------------------ | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
 | `renews_at`        | string                                                 | timestamp when the next renewal will be requested, RFC 3339 format                                         |
 | `provisioning_job` | [ReservedDomainCertJob](#reserveddomaincertjob-fields) | status of the certificate provisioning job, or null if the certificiate isn't being provisioned or renewed |
 
 #### ReservedDomainCertJob fields
 
-| &nbsp;       | &nbsp; | &nbsp;                                                                                                                                                                           |
+| Name         | Type   | Description                                                                                                                                                                      |
 | ------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `error_code` | string | if present, an error code indicating why provisioning is failing. It may be either a temporary condition (INTERNAL_ERROR), or a permanent one the user must correct (DNS_ERROR). |
 | `msg`        | string | a message describing the current status or error                                                                                                                                 |
@@ -191,7 +191,7 @@ Returns a 200 response on success
 
 #### Fields
 
-| &nbsp;             | &nbsp;                                   | &nbsp;                                                 |
+| Name               | Type                                     | Description                                            |
 | ------------------ | ---------------------------------------- | ------------------------------------------------------ |
 | `reserved_domains` | [ReservedDomain](#reserveddomain-fields) | the list of all reserved domains on this account       |
 | `uri`              | string                                   | URI of the reserved domain list API resource           |
@@ -199,7 +199,7 @@ Returns a 200 response on success
 
 #### ReservedDomain fields
 
-| &nbsp;                          | &nbsp;                                                       | &nbsp;                                                                                                                                                                                                                                                   |
+| Name                            | Type                                                         | Description                                                                                                                                                                                                                                              |
 | ------------------------------- | ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                            | string                                                       | unique reserved domain resource identifier                                                                                                                                                                                                               |
 | `uri`                           | string                                                       | URI of the reserved domain API resource                                                                                                                                                                                                                  |
@@ -216,28 +216,28 @@ Returns a 200 response on success
 
 #### Ref fields
 
-| &nbsp; | &nbsp; | &nbsp;                        |
-| ------ | ------ | ----------------------------- |
-| `id`   | string | a resource identifier         |
-| `uri`  | string | a uri for locating a resource |
+| Name  | Type   | Description                   |
+| ----- | ------ | ----------------------------- |
+| `id`  | string | a resource identifier         |
+| `uri` | string | a uri for locating a resource |
 
 #### ReservedDomainCertPolicy fields
 
-| &nbsp;             | &nbsp; | &nbsp;                                                                                                |
-| ------------------ | ------ | ----------------------------------------------------------------------------------------------------- |
-| `authority`        | string | certificate authority to request certificates from. The only supported value is letsencrypt.          |
-| `private_key_type` | string | type of private key to use when requesting certificates. Defaults to rsa, can be either rsa or ecdsa. |
+| Name               | Type   | Description                                                                                             |
+| ------------------ | ------ | ------------------------------------------------------------------------------------------------------- |
+| `authority`        | string | certificate authority to request certificates from. The only supported value is letsencrypt.            |
+| `private_key_type` | string | type of private key to use when requesting certificates. Defaults to ecdsa, can be either rsa or ecdsa. |
 
 #### ReservedDomainCertStatus fields
 
-| &nbsp;             | &nbsp;                                                 | &nbsp;                                                                                                     |
+| Name               | Type                                                   | Description                                                                                                |
 | ------------------ | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
 | `renews_at`        | string                                                 | timestamp when the next renewal will be requested, RFC 3339 format                                         |
 | `provisioning_job` | [ReservedDomainCertJob](#reserveddomaincertjob-fields) | status of the certificate provisioning job, or null if the certificiate isn't being provisioned or renewed |
 
 #### ReservedDomainCertJob fields
 
-| &nbsp;       | &nbsp; | &nbsp;                                                                                                                                                                           |
+| Name         | Type   | Description                                                                                                                                                                      |
 | ------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `error_code` | string | if present, an error code indicating why provisioning is failing. It may be either a temporary condition (INTERNAL_ERROR), or a permanent one the user must correct (DNS_ERROR). |
 | `msg`        | string | a message describing the current status or error                                                                                                                                 |
@@ -250,13 +250,13 @@ Update the attributes of a reserved domain.
 
 ### Request
 
-PATCH /reserved_domains/{id}
+PATCH /reserved_domains/\{id\}
 
 <ReservedDomainsUpdateRequest />
 
 #### Parameters
 
-| &nbsp;                          | &nbsp;                                                           | &nbsp;                                                                                                                                                                       |
+| Name                            | Type                                                             | Description                                                                                                                                                                  |
 | ------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                            | string                                                           |                                                                                                                                                                              |
 | `description`                   | string                                                           | human-readable description of what this reserved domain will be used for                                                                                                     |
@@ -266,10 +266,10 @@ PATCH /reserved_domains/{id}
 
 #### ReservedDomainCertPolicy parameters
 
-| &nbsp;             | &nbsp; | &nbsp;                                                                                                |
-| ------------------ | ------ | ----------------------------------------------------------------------------------------------------- |
-| `authority`        | string | certificate authority to request certificates from. The only supported value is letsencrypt.          |
-| `private_key_type` | string | type of private key to use when requesting certificates. Defaults to rsa, can be either rsa or ecdsa. |
+| Name               | Type   | Description                                                                                             |
+| ------------------ | ------ | ------------------------------------------------------------------------------------------------------- |
+| `authority`        | string | certificate authority to request certificates from. The only supported value is letsencrypt.            |
+| `private_key_type` | string | type of private key to use when requesting certificates. Defaults to ecdsa, can be either rsa or ecdsa. |
 
 ### Response
 
@@ -279,7 +279,7 @@ Returns a 200 response on success
 
 #### Fields
 
-| &nbsp;                          | &nbsp;                                                       | &nbsp;                                                                                                                                                                                                                                                   |
+| Name                            | Type                                                         | Description                                                                                                                                                                                                                                              |
 | ------------------------------- | ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                            | string                                                       | unique reserved domain resource identifier                                                                                                                                                                                                               |
 | `uri`                           | string                                                       | URI of the reserved domain API resource                                                                                                                                                                                                                  |
@@ -296,28 +296,28 @@ Returns a 200 response on success
 
 #### Ref fields
 
-| &nbsp; | &nbsp; | &nbsp;                        |
-| ------ | ------ | ----------------------------- |
-| `id`   | string | a resource identifier         |
-| `uri`  | string | a uri for locating a resource |
+| Name  | Type   | Description                   |
+| ----- | ------ | ----------------------------- |
+| `id`  | string | a resource identifier         |
+| `uri` | string | a uri for locating a resource |
 
 #### ReservedDomainCertPolicy fields
 
-| &nbsp;             | &nbsp; | &nbsp;                                                                                                |
-| ------------------ | ------ | ----------------------------------------------------------------------------------------------------- |
-| `authority`        | string | certificate authority to request certificates from. The only supported value is letsencrypt.          |
-| `private_key_type` | string | type of private key to use when requesting certificates. Defaults to rsa, can be either rsa or ecdsa. |
+| Name               | Type   | Description                                                                                             |
+| ------------------ | ------ | ------------------------------------------------------------------------------------------------------- |
+| `authority`        | string | certificate authority to request certificates from. The only supported value is letsencrypt.            |
+| `private_key_type` | string | type of private key to use when requesting certificates. Defaults to ecdsa, can be either rsa or ecdsa. |
 
 #### ReservedDomainCertStatus fields
 
-| &nbsp;             | &nbsp;                                                 | &nbsp;                                                                                                     |
+| Name               | Type                                                   | Description                                                                                                |
 | ------------------ | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
 | `renews_at`        | string                                                 | timestamp when the next renewal will be requested, RFC 3339 format                                         |
 | `provisioning_job` | [ReservedDomainCertJob](#reserveddomaincertjob-fields) | status of the certificate provisioning job, or null if the certificiate isn't being provisioned or renewed |
 
 #### ReservedDomainCertJob fields
 
-| &nbsp;       | &nbsp; | &nbsp;                                                                                                                                                                           |
+| Name         | Type   | Description                                                                                                                                                                      |
 | ------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `error_code` | string | if present, an error code indicating why provisioning is failing. It may be either a temporary condition (INTERNAL_ERROR), or a permanent one the user must correct (DNS_ERROR). |
 | `msg`        | string | a message describing the current status or error                                                                                                                                 |
@@ -330,7 +330,7 @@ Detach the certificate management policy attached to a reserved domain.
 
 ### Request
 
-DELETE /reserved_domains/{id}/certificate_management_policy
+DELETE /reserved_domains/\{id\}/certificate_management_policy
 
 <ReservedDomainsDeleteCertificateManagementPolicyRequest />
 
@@ -344,7 +344,7 @@ Detach the certificate attached to a reserved domain.
 
 ### Request
 
-DELETE /reserved_domains/{id}/certificate
+DELETE /reserved_domains/\{id\}/certificate
 
 <ReservedDomainsDeleteCertificateRequest />
 

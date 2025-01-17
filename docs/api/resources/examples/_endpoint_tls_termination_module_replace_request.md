@@ -8,6 +8,6 @@ curl \
 -H "Authorization: Bearer {API_KEY}" \
 -H "Content-Type: application/json" \
 -H "Ngrok-Version: 2" \
--d '{"terminate_at":"edge","min_version":"1.2"}' \
-https://api.ngrok.com/endpoint_configurations/ec_2XH3sRF0BsoYS7ujMEmtFRI0sTj/tls_termination
+-d '{"min_version":"1.2","terminate_at":"edge"}' \
+https://api.ngrok.com/endpoint_configurations/ec_2na2KvyrsjgmgFdkUT3jVLrN8cm/tls_termination
 ```

@@ -1,19 +1,19 @@
-import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import KubernetesExample from "/examples/k8s/http-basic-auth.mdx";
+import Tabs from "@theme/Tabs";
 import AgentCliExample from "/examples/agent-cli/http-basic-auth.mdx";
 import AgentConfigExample from "/examples/agent-config/http-basic-auth.mdx";
-import SshExample from "/examples/ssh/http-basic-auth.mdx";
 import GoSdkExample from "/examples/go-sdk/http-basic-auth.mdx";
 import JavascriptSdkExample from "/examples/javascript-sdk/http-basic-auth.mdx";
+import KubernetesExample from "/examples/k8s/http-basic-auth.mdx";
 import PythonSdkExample from "/examples/python-sdk/http-basic-auth.mdx";
 import RustSdkExample from "/examples/rust-sdk/http-basic-auth.mdx";
+import SshExample from "/examples/ssh/http-basic-auth.mdx";
 
 # Basic Auth
 
 ## Overview
 
-This modules enforces HTTP Basic Authentication in front of you endpoints.
+This modules enforces HTTP Basic Authentication in front of your endpoints.
 Requests with a valid username and password will be sent to your upstream
 service, all others will be rejected with a 401 Unauthorized response.
 
@@ -144,7 +144,7 @@ This module is available on all plans.
 Start ngrok in one terminal:
 
 ```bash
-ngrok http https://httpbin.org --domain your-domain.ngrok.app --basic-auth "falken:joshuahunter2"
+ngrok http https://httpbin.org --url your-domain.ngrok.app --basic-auth "falken:joshuahunter2"
 ```
 
 In another terminal, curl that endpoint.
@@ -153,22 +153,22 @@ Without any credentials:
 
 ```bash
 curl https://your-domain.ngrok.app/status/200
-
-401 Unauthorized
 ```
+
+`401 Unauthorized`
 
 With incorrect credentials:
 
 ```bash
 curl https://your-domain.ngrok.app/status/200 --user "foo:bar"
-
-401 Unauthorized
 ```
+
+`401 Unauthorized`
 
 And finally with valid credentials:
 
 ```bash
 curl https://your-domain.ngrok.app/status/200 --user "falken:joshuahunter2" -I
-
-HTTP/2 200
 ```
+
+`HTTP/2 200`

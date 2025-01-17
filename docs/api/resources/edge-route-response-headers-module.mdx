@@ -1,9 +1,9 @@
-import EdgeRouteResponseHeadersModuleReplaceRequest from "./examples/_edge_route_response_headers_module_replace_request.md";
-import EdgeRouteResponseHeadersModuleReplaceResponse from "./examples/_edge_route_response_headers_module_replace_response.md";
-import EdgeRouteResponseHeadersModuleGetRequest from "./examples/_edge_route_response_headers_module_get_request.md";
-import EdgeRouteResponseHeadersModuleGetResponse from "./examples/_edge_route_response_headers_module_get_response.md";
 import EdgeRouteResponseHeadersModuleDeleteRequest from "./examples/_edge_route_response_headers_module_delete_request.md";
 import EdgeRouteResponseHeadersModuleDeleteResponse from "./examples/_edge_route_response_headers_module_delete_response.md";
+import EdgeRouteResponseHeadersModuleGetRequest from "./examples/_edge_route_response_headers_module_get_request.md";
+import EdgeRouteResponseHeadersModuleGetResponse from "./examples/_edge_route_response_headers_module_get_response.md";
+import EdgeRouteResponseHeadersModuleReplaceRequest from "./examples/_edge_route_response_headers_module_replace_request.md";
+import EdgeRouteResponseHeadersModuleReplaceResponse from "./examples/_edge_route_response_headers_module_replace_response.md";
 
 # Edge Route Response Headers Module
 
@@ -11,13 +11,13 @@ import EdgeRouteResponseHeadersModuleDeleteResponse from "./examples/_edge_route
 
 ### Request
 
-PUT /edges/https/{edge_id}/routes/{id}/response_headers
+PUT /edges/https/\{edge_id\}/routes/\{id\}/response_headers
 
 <EdgeRouteResponseHeadersModuleReplaceRequest />
 
 #### Parameters
 
-| &nbsp;    | &nbsp;                    | &nbsp;                                                                                                       |
+| Name      | Type                      | Description                                                                                                  |
 | --------- | ------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | `enabled` | boolean                   | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified           |
 | `add`     | Map&lt;string, string&gt; | a map of header key to header value that will be injected into the HTTP Response returned to the HTTP client |
@@ -31,7 +31,7 @@ Returns a 200 response on success
 
 #### Fields
 
-| &nbsp;    | &nbsp;                    | &nbsp;                                                                                                       |
+| Name      | Type                      | Description                                                                                                  |
 | --------- | ------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | `enabled` | boolean                   | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified           |
 | `add`     | Map&lt;string, string&gt; | a map of header key to header value that will be injected into the HTTP Response returned to the HTTP client |
@@ -41,7 +41,7 @@ Returns a 200 response on success
 
 ### Request
 
-GET /edges/https/{edge_id}/routes/{id}/response_headers
+GET /edges/https/\{edge_id\}/routes/\{id\}/response_headers
 
 <EdgeRouteResponseHeadersModuleGetRequest />
 
@@ -53,7 +53,7 @@ Returns a 200 response on success
 
 #### Fields
 
-| &nbsp;    | &nbsp;                    | &nbsp;                                                                                                       |
+| Name      | Type                      | Description                                                                                                  |
 | --------- | ------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | `enabled` | boolean                   | `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified           |
 | `add`     | Map&lt;string, string&gt; | a map of header key to header value that will be injected into the HTTP Response returned to the HTTP client |
@@ -63,7 +63,7 @@ Returns a 200 response on success
 
 ### Request
 
-DELETE /edges/https/{edge_id}/routes/{id}/response_headers
+DELETE /edges/https/\{edge_id\}/routes/\{id\}/response_headers
 
 <EdgeRouteResponseHeadersModuleDeleteRequest />
 
